@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "798768893799",
+    "firebase_url": "https://ffbf-app-ded66.firebaseio.com",
+    "project_id": "ffbf-app-ded66",
+    "storage_bucket": "ffbf-app-ded66.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:798768893799:android:6c3ccf9e663e1743c729c2",
+        "android_client_info": {
+          "package_name": "com.example.ffbfapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "798768893799-fas55kakqd7q1qhg7urj0nj5njel90lm.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCYFgohmU3vVVslTQbEeQxFBKx_Ly0UGso"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "798768893799-fas55kakqd7q1qhg7urj0nj5njel90lm.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

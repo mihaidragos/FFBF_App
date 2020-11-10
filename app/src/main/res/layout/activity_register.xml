@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".RegisterActivity">
+
+    <RelativeLayout
+        android:id="@+id/relativeLayout"
+        android:layout_width="365dp"
+        android:layout_height="518dp"
+        android:fadingEdge="none"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.497">
+
+        <TextView
+            android:id="@+id/registerPageTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/nameInputLabel"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="101dp"
+            android:layout_marginTop="28dp"
+            android:layout_marginEnd="101dp"
+            android:layout_marginBottom="37dp"
+            android:fontFamily="sans-serif-medium"
+            android:text="@string/register"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textFontWeight="800"
+            android:textSize="30sp" />
+
+        <TextView
+            android:id="@+id/nameInputLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="85dp"
+            android:layout_marginTop="98dp"
+            android:labelFor="@id/nameInput"
+            android:text="@string/name"
+            android:textSize="12sp" />
+
+        <EditText
+            android:id="@+id/emailInput"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/emailInputLabel"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="85dp"
+            android:layout_marginTop="0dp"
+            android:layout_marginEnd="87dp"
+            android:autofillHints=""
+            android:ems="10"
+            android:inputType="textEmailAddress" />
+
+        <TextView
+            android:id="@+id/emailInputLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/nameInput"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="85dp"
+            android:layout_marginTop="20dp"
+            android:labelFor="@id/emailInput"
+            android:text="@string/email"
+            android:textSize="12sp" />
+
+        <EditText
+            android:id="@+id/nameInput"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/nameInputLabel"
+            android:layout_alignStart="@+id/nameInputLabel"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="0dp"
+            android:layout_marginTop="0dp"
+            android:layout_marginEnd="87dp"
+            android:autofillHints=""
+            android:ems="10"
+            android:inputType="textPersonName" />
+
+        <EditText
+            android:id="@+id/passwordInput"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/passwordInputLabel2"
+            android:layout_alignStart="@+id/passwordInputLabel2"
+            android:layout_marginStart="0dp"
+            android:layout_marginTop="0dp"
+            android:autofillHints=""
+            android:ems="10"
+            android:inputType="textPassword" />
+
+        <TextView
+            android:id="@+id/passwordInputLabel2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/emailInput"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="85dp"
+            android:layout_marginTop="20dp"
+            android:labelFor="@id/passwordInput"
+            android:text="@string/password_label"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/passwordConfirmInputLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/passwordInput"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="85dp"
+            android:layout_marginTop="20dp"
+            android:labelFor="@id/confirmPasswordInput"
+            android:text="@string/confirm_password_label"
+            android:textSize="12sp" />
+
+        <EditText
+            android:id="@+id/confirmPasswordInput"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/passwordConfirmInputLabel"
+            android:layout_alignStart="@+id/passwordInputLabel2"
+            android:layout_marginStart="0dp"
+            android:layout_marginTop="0dp"
+            android:autofillHints=""
+            android:ems="10"
+            android:inputType="textPassword" />
+
+        <Button
+            android:id="@+id/registerSubmitBtn"
+            android:layout_width="126dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/confirmPasswordInput"
+            android:layout_alignStart="@+id/confirmPasswordInput"
+            android:layout_alignEnd="@+id/confirmPasswordInput"
+            android:layout_marginStart="42dp"
+            android:layout_marginTop="35dp"
+            android:layout_marginEnd="43dp"
+            android:text="@string/register" />
+
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/registerBanner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="FFBF"
+        android:textFontWeight="800"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toTopOf="@+id/relativeLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="88dp"
+        android:layout_height="58dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:visibility="gone"/>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

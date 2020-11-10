@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ChangePassActivity">
+
+    <TextView
+        android:id="@+id/confirmNewPassLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="36dp"
+        android:labelFor="@id/confirmNewPassInput"
+        android:text="@string/confirm_new_password_label"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="@+id/newPassInput"
+        app:layout_constraintTop_toBottomOf="@+id/newPassInput" />
+
+    <EditText
+        android:id="@+id/confirmNewPassInput"
+        android:layout_width="380dp"
+        android:layout_height="62dp"
+        android:layout_marginTop="12dp"
+        android:ems="10"
+        android:inputType="textPassword"
+        app:layout_constraintStart_toStartOf="@+id/confirmNewPassLabel"
+        app:layout_constraintTop_toBottomOf="@+id/confirmNewPassLabel"
+        android:autofillHints="" />
+
+    <TextView
+        android:id="@+id/changePassTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="96dp"
+        android:gravity="center|center_vertical"
+        android:text="@string/change_your_password"
+        android:textSize="30sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/changePassText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="36dp"
+        android:text="@string/change_password_text"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="@+id/changePassTitle"
+        app:layout_constraintStart_toStartOf="@+id/changePassTitle"
+        app:layout_constraintTop_toBottomOf="@+id/changePassTitle" />
+
+    <TextView
+        android:id="@+id/newPassLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="36dp"
+        android:labelFor="@id/newPassInput"
+        android:text="@string/new_password_label"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="@+id/changePassText"
+        app:layout_constraintTop_toBottomOf="@+id/changePassText" />
+
+    <EditText
+        android:id="@+id/newPassInput"
+        android:layout_width="380dp"
+        android:layout_height="62dp"
+        android:layout_marginTop="12dp"
+        android:ems="10"
+        android:inputType="textPassword"
+        app:layout_constraintStart_toStartOf="@+id/newPassLabel"
+        app:layout_constraintTop_toBottomOf="@+id/newPassLabel"
+        android:autofillHints="" />
+
+    <Button
+        android:id="@+id/changePassBtn"
+        android:layout_width="380dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="52dp"
+        android:text="@string/change_password"
+        app:layout_constraintStart_toStartOf="@+id/confirmNewPassInput"
+        app:layout_constraintTop_toBottomOf="@+id/confirmNewPassInput" />
+
+    <ProgressBar
+        android:id="@+id/changePassPB"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>

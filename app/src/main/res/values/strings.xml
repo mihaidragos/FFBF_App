@@ -1,0 +1,35 @@
+<resources>
+    <string name="app_name">FFBF App</string>
+    <string name="log_in">Log In</string>
+    <string name="register">Register</string>
+    <string name="username_label">Username/Email</string>
+    <string name="password_label">Password</string>
+    <string name="new_password_label">New Password</string>
+    <string name="confirm_password_label">Confirm Password</string>
+    <string name="confirm_new_password_label">Confirm New Password</string>
+    <string name="name">Name</string>
+    <string name="email">Email</string>
+    <string name="submit">Submit</string>
+    <string name="test_text">Text</string>
+    <string name="textview">TextView</string>
+    <string name="forgotPassword">Forgot Password</string>
+    <string name="profilePageTitle">Your Account</string>
+    <string name="logout">Sign Out</string>
+    <string name="save">Save</string>
+    <string name="reviews">Reviews</string>
+    <string name="ffbf">F F B F</string>
+    <string name="forgot_password">Forgot your password?</string>
+    <string name="forgot_password_text">Please enter the email address associated with your account and we will send you a password reset link.</string>
+    <string name="reset_password">Reset Password</string>
+    <string name="change_your_password">Change your password</string>
+    <string name="change_password">Change password</string>
+    <string name="change_password_text">Please enter a new password below</string>
+
+    <string-array name="beer_colors">
+        <item>light</item>
+        <item>amber</item>
+        <item>brown</item>
+        <item>dark</item>
+    </string-array>
+
+</resources>
