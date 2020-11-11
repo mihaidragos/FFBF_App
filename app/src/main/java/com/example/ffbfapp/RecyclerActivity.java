@@ -37,7 +37,6 @@ public class RecyclerActivity extends AppCompatActivity implements View.OnClickL
     private RecyclerView.LayoutManager mLayoutManager;
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -156,7 +155,7 @@ public class RecyclerActivity extends AppCompatActivity implements View.OnClickL
 
             @Override
             public boolean onQueryTextChange(String newText) {
-                mAdapter.getFilter();
+                mAdapter.getFilter().filter(newText);
                 return false;
             }
         });
