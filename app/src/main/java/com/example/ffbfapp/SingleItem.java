@@ -2,16 +2,26 @@ package com.example.ffbfapp;
 
 public class SingleItem {
     private int imageResource;
-    private String titleText, contentText;
+    private String locationNameText, descriptionText, uid;
 
-    public SingleItem(int imageResource, String titleText, String contentText) {
+
+    public SingleItem(int imageResource, String locationNameText, String descriptionText, String uid) {
+        this.uid = uid;
         this.imageResource = imageResource;
-        this.titleText = titleText;
-        this.contentText = contentText;
+        this.locationNameText = locationNameText;
+        this.descriptionText = descriptionText;
     }
 
-    public void changeTitleText(String text){
-        titleText = text;
+    public String getUid() {
+        return uid;
+    }
+
+    public void setUid(String uid) {
+        this.uid = uid;
+    }
+
+    public void changeTitleText(String text) {
+        locationNameText = text;
     }
 
     public int getImageResource() {
@@ -22,19 +32,19 @@ public class SingleItem {
         this.imageResource = imageResource;
     }
 
-    public String getTitleText() {
-        return titleText;
+    public String getLocationNameText() {
+        return locationNameText;
     }
 
-    public void setTitleText(String titleText) {
-        this.titleText = titleText;
+    public void setLocationNameText(String locationNameText) {
+        this.locationNameText = locationNameText;
     }
 
-    public String getContentText() {
-        return contentText;
+    public String getDescriptionText() {
+        return descriptionText;
     }
 
-    public void setContentText(String contentText) {
-        this.contentText = contentText;
+    public void setDescriptionText(String descriptionText) {
+        this.descriptionText = descriptionText;
     }
 }

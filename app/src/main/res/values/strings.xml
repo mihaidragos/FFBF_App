@@ -9,9 +9,21 @@
     <string name="confirm_new_password_label">Confirm New Password</string>
     <string name="name">Name</string>
     <string name="email">Email</string>
+    <string name="address">Address</string>
+    <string name="street_address">Street Address</string>
+    <string name="postcode">Postcode</string>
+    <string name="street">Street</string>
+    <string name="city">City</string>
+    <string name="county">County</string>
     <string name="submit">Submit</string>
-    <string name="test_text">Text</string>
-    <string name="textview">TextView</string>
+    <string name="rating">Rating</string>
+    <string name="phone">Phone No</string>
+    <string name="venue_name">Venue Name</string>
+    <string name="venue_description">Venue Description</string>
+    <string name="please_enter_description">Please enter a short description</string>
+
+    <string name="upload_image">Upload Image</string>
+    <string name="pick_image">Pick Image</string>
     <string name="forgotPassword">Forgot Password</string>
     <string name="profilePageTitle">Your Account</string>
     <string name="logout">Sign Out</string>
@@ -24,12 +36,24 @@
     <string name="change_your_password">Change your password</string>
     <string name="change_password">Change password</string>
     <string name="change_password_text">Please enter a new password below</string>
+    <string name="add_street_food_location">Add Street Food Location</string>
+    <string name="add_restaurant">Add Restaurant</string>
+    <string name="add_street_food">Add Street Food</string>
+    <string name="admin_panel">Admin Panel</string>
+    <string name="admin_panel_search_user">Search Users</string>
+    <string name="admin_panel_users_list">Users List</string>
+    <string name="admin_panel_assign_new_food_critic">Assign New Food Critic</string>
 
-    <string-array name="beer_colors">
-        <item>light</item>
-        <item>amber</item>
-        <item>brown</item>
-        <item>dark</item>
+
+    <string-array name="ratingValues">
+        <item>5</item>
+        <item>4</item>
+        <item>3</item>
+        <item>2</item>
+        <item>1</item>
+        <item>0</item>
     </string-array>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>

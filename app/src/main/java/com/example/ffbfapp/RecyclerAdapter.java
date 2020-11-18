@@ -38,19 +38,21 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Recycl
         mListener = listener;
     }
 
+
+    // creating a class in order to interact with the inner parts of a single item (list item)
     public static class RecyclerViewHolder extends RecyclerView.ViewHolder {
 
         public ImageView mImageView,mDelIcon;
         public TextView mTitleText, mContentText;
+        // RecyclerViewHolder CONSTRUCTOR
+        public RecyclerViewHolder(@NonNull View singleItem, OnItemClickListener listener) {
+            super(singleItem);
+            mImageView      = singleItem.findViewById(R.id.imageView);
+            mTitleText      = singleItem.findViewById(R.id.card_title_text);
+            mContentText    = singleItem.findViewById(R.id.card_content_text);
+            mDelIcon        = singleItem.findViewById(R.id.delete_icon);
 
-        public RecyclerViewHolder(@NonNull View itemView, OnItemClickListener listener) {
-            super(itemView);
-            mImageView      = itemView.findViewById(R.id.imageView);
-            mTitleText      = itemView.findViewById(R.id.card_title_text);
-            mContentText    = itemView.findViewById(R.id.card_content_text);
-            mDelIcon        = itemView.findViewById(R.id.delete_icon);
-
-            itemView.setOnClickListener(new View.OnClickListener() {
+            singleItem.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     if(listener != null){
@@ -100,8 +102,8 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Recycl
         SingleItem currentItem = mRestaurantsList.get(position);
 
         holder.mImageView.setImageResource(currentItem.getImageResource());
-        holder.mTitleText.setText(currentItem.getTitleText());
-        holder.mContentText.setText(currentItem.getContentText());
+        holder.mTitleText.setText(currentItem.getLocationNameText());
+        holder.mContentText.setText(currentItem.getDescriptionText());
     }
 
     // this returns the size of our sample list to the Adapter
@@ -121,7 +123,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Recycl
                 String filterPattern = constraint.toString().toLowerCase().trim();
 
                 for (SingleItem item : mRestaurantsListFull){
-                    if (item.getTitleText().toLowerCase().contains(filterPattern)){
+                    if (item.getLocationNameText().toLowerCase().contains(filterPattern)){
                         filteredList.add(item);
                     }
                 }

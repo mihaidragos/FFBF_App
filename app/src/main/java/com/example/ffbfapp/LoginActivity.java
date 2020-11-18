@@ -43,7 +43,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         progressBar     = findViewById(R.id.progressBarLogin);
         forgotPassword  = findViewById(R.id.forgotPassword);
 
-
         msg = "";
 
         // register the click listener on the register link
@@ -136,7 +135,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
 
                     if(user.isEmailVerified()){
-                        // redirect to password change page if some extras are passed from my account page
+                        // redirect to password change page if `CHANGE_PASS` extra is passed from my account page
                         if(CHANGE_PASS == true){
                             // redirect to Change Password page if login is successful
                             startActivity(new Intent(LoginActivity.this, ChangePassActivity.class));

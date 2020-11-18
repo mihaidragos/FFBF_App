@@ -23,7 +23,7 @@ import com.google.firebase.database.FirebaseDatabase;
 public class RegisterActivity extends AppCompatActivity implements View.OnClickListener {
     private FirebaseAuth mAuth;
     // public static String Msg2Send = "name";
-    private EditText nameInput, emailInput, passwordInput,confirmPasswordInput;
+    private EditText nameInput, lastNameInput, emailInput, passwordInput,confirmPasswordInput;
     private Button submitBtn;
     private ProgressBar progressBar;
     private TextView banner;
@@ -38,6 +38,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         // declare variables
         submitBtn               = findViewById(R.id.registerSubmitBtn);
         nameInput               = findViewById(R.id.nameInput);
+        lastNameInput           = findViewById(R.id.lastNameInput);
         emailInput              = findViewById(R.id.emailInput);
         passwordInput           = findViewById(R.id.passwordInput);
         confirmPasswordInput    = findViewById(R.id.confirmPasswordInput);
@@ -63,6 +64,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 
     private void registerUser() {
         String name = nameInput.getText().toString().trim();
+        String lastName = lastNameInput.getText().toString().trim();
         String email = emailInput.getText().toString().trim();
         String password = passwordInput.getText().toString().trim();
         String confirmPassword = confirmPasswordInput.getText().toString().trim();
@@ -116,13 +118,14 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         }
 
         progressBar.setVisibility(View.VISIBLE);
+
         mAuth.createUserWithEmailAndPassword(email, password)
              .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                  @Override
                  public void onComplete(@NonNull Task<AuthResult> task) {
 
                      if(task.isSuccessful()){
-                         User user = new User(name, email);
+                         User user = new User(name, lastName, email);
 
                          FirebaseDatabase.getInstance().getReference("Users")
                                  .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
@@ -130,7 +133,9 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                              @Override
                              public void onComplete(@NonNull Task<Void> task) {
                                  if(task.isSuccessful()) {
-                                     Toast.makeText(RegisterActivity.this, "Registration successful", Toast.LENGTH_LONG).show();
+                                     Toast.makeText(RegisterActivity.this, "Registration successful. Please verify your email before login", Toast.LENGTH_LONG).show();
+
+
                                      progressBar.setVisibility(View.GONE);
 
                                      // Redirect to login

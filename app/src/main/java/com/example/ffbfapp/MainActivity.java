@@ -3,7 +3,6 @@ package com.example.ffbfapp;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,10 +11,9 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.ffbfapp.model.Restaurant;
+import com.example.ffbfapp.model.FoodVenue;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -25,7 +23,6 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     private ListView restaurantsList;
@@ -46,10 +43,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         // getting the views references from this acivity layout
         restaurantsList = findViewById(R.id.restaurantList);
         button          = findViewById(R.id.testingBtn);
-        button2         = findViewById(R.id.button2);
+        button2         = findViewById(R.id.testingButton);
         logoutBtn       = findViewById(R.id.logoutBtn);
         myAccountBtn    = findViewById(R.id.myAccountBtn);
         listViewBtn     = findViewById(R.id.listViewBtn);
+
+//=================================================================
+//=================================================================
+//=================================================================
+//=================================================================
+        startActivity(new Intent(MainActivity.this, AdminPanelActivity.class));
+
 
         // create click listener for each button in order for _this_ object (the MainActivity class) to be passed to the onClick method below
         button.setOnClickListener(this);
@@ -80,14 +84,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         restaurantsList.setAdapter(restaurantsAdapter);
 
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("Restaurants");
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference();
 
-        reference.addValueEventListener(new ValueEventListener() {
+        reference.child("Restaurants").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 restaurants.clear();
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()){
-//                    Restaurant restaurant = snapshot.getValue(Restaurant.class);
+//                    FoodVenue restaurant = snapshot.getValue(FoodVenue.class);
                     String restaurant = snapshot.child("name").getValue(String.class);
 //                    restaurant.getName();
                     restaurants.add(restaurant);
@@ -118,7 +122,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.testingBtn:
                 startActivity(new Intent(MainActivity.this, LoginActivity.class));
                 break;
-            case R.id.button2:
+            case R.id.testingButton:
                 startActivity(new Intent(MainActivity.this, RegisterActivity.class));
                 break;
             case R.id.logoutBtn:
@@ -129,8 +133,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 startActivity(new Intent(MainActivity.this, UserProfileActivity.class));
                 break;
             case R.id.listViewBtn:
-                startActivity(new Intent(MainActivity.this, RecyclerActivity.class));
+                startActivity(new Intent(MainActivity.this, RestaurantsListActivity.class));
                 break;
         }
+    }
+
+
+    // function to add FoodVenues to Firebase
+    public void addFoodVenue(FoodVenue foodVenue, DatabaseReference reference) {
+        String uid = reference.push().getKey();
+        foodVenue.setUid(uid);
+        reference.child(uid).setValue(foodVenue);
+
     }
 }

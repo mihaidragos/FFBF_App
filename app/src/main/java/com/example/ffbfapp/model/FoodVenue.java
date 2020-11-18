@@ -1,14 +1,17 @@
 package com.example.ffbfapp.model;
 
-public class Restaurant {
-    private String name, description, street, city, county, postcode, contactNo;
-    private float rating;
-    private String review;
+public class FoodVenue {
+    private String uid, name, description, street, city, county, postcode, contactNo, foodVenueType;
+    private int rating;
 
-    public Restaurant() {
+    // TODO: Add reviews list
+    //  foodVenueType [Restaurant || Street Food]
+    public FoodVenue() {
     }
 
-    public Restaurant(String name, String description, String street, String city, String county, String postcode, String contactNo, float rating, String review) {
+
+    public FoodVenue(String uid, String name, String foodVenueType, String description, String street, String city, String county, String postcode, String contactNo, int rating) {
+        this.uid = uid;
         this.name = name;
         this.description = description;
         this.street = street;
@@ -17,8 +20,12 @@ public class Restaurant {
         this.postcode = postcode;
         this.contactNo = contactNo;
         this.rating = rating;
-        this.review = review;
+        this.foodVenueType = foodVenueType;
     }
+
+    public String getUid() { return uid; }
+
+    public void setUid(String uid) { this.uid = uid; }
 
     public String getName() {
         return name;
@@ -76,19 +83,19 @@ public class Restaurant {
         this.contactNo = contactNo;
     }
 
-    public float getRating() {
+    public int getRating() {
         return rating;
     }
 
-    public void setRating(float rating) {
+    public void setRating(int rating) {
         this.rating = rating;
     }
 
-    public String getReview() {
-        return review;
+    public String getFoodVenueType() {
+        return foodVenueType;
     }
 
-    public void setReview(String review) {
-        this.review = review;
+    public void setFoodVenueType(String foodVenueType) {
+        this.foodVenueType = foodVenueType;
     }
 }

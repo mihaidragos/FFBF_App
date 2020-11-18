@@ -9,13 +9,13 @@
     <RelativeLayout
         android:id="@+id/relativeLayout"
         android:layout_width="365dp"
-        android:layout_height="518dp"
+        android:layout_height="600dp"
         android:fadingEdge="none"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.497">
+        app:layout_constraintVertical_bias="0.702">
 
         <TextView
             android:id="@+id/registerPageTitle"
@@ -49,32 +49,6 @@
             android:textSize="12sp" />
 
         <EditText
-            android:id="@+id/emailInput"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/emailInputLabel"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentEnd="true"
-            android:layout_marginStart="85dp"
-            android:layout_marginTop="0dp"
-            android:layout_marginEnd="87dp"
-            android:autofillHints=""
-            android:ems="10"
-            android:inputType="textEmailAddress" />
-
-        <TextView
-            android:id="@+id/emailInputLabel"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/nameInput"
-            android:layout_alignParentStart="true"
-            android:layout_marginStart="85dp"
-            android:layout_marginTop="20dp"
-            android:labelFor="@id/emailInput"
-            android:text="@string/email"
-            android:textSize="12sp" />
-
-        <EditText
             android:id="@+id/nameInput"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -87,6 +61,59 @@
             android:autofillHints=""
             android:ems="10"
             android:inputType="textPersonName" />
+
+        <TextView
+            android:id="@+id/lastNameInputLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="86dp"
+            android:layout_marginTop="177dp"
+            android:labelFor="@id/nameInput"
+            android:text="@string/name"
+            android:textSize="12sp" />
+
+        <EditText
+            android:id="@+id/lastNameInput"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/nameInput"
+            android:layout_alignStart="@+id/nameInputLabel"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="1dp"
+            android:layout_marginTop="34dp"
+            android:layout_marginEnd="86dp"
+            android:autofillHints=""
+            android:ems="10"
+            android:inputType="textPersonName" />
+
+        <TextView
+            android:id="@+id/emailInputLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/lastNameInput"
+            android:layout_alignStart="@+id/emailInput"
+            android:layout_marginStart="0dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginBottom="0dp"
+            android:labelFor="@id/emailInput"
+            android:text="@string/email"
+            android:textSize="12sp" />
+
+        <EditText
+            android:id="@+id/emailInput"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/lastNameInput"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="85dp"
+            android:layout_marginTop="49dp"
+            android:layout_marginEnd="87dp"
+            android:autofillHints=""
+            android:ems="10"
+            android:inputType="textEmailAddress" />
 
         <EditText
             android:id="@+id/passwordInput"
@@ -119,7 +146,7 @@
             android:layout_below="@+id/passwordInput"
             android:layout_alignParentStart="true"
             android:layout_marginStart="85dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="21dp"
             android:labelFor="@id/confirmPasswordInput"
             android:text="@string/confirm_password_label"
             android:textSize="12sp" />
