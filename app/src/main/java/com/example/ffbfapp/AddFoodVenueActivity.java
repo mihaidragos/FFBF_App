@@ -25,7 +25,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.squareup.picasso.Picasso;
 
-public class AddStreetFoodActivity extends AppCompatActivity {
+public class AddFoodVenueActivity extends AppCompatActivity {
 
     private EditText uid, nameInput, descriptionInput, streetInput, cityInput, countyInput, postcodeInput, contactNoInput, venueType;
     private Spinner ratingInput;
@@ -34,7 +34,15 @@ public class AddStreetFoodActivity extends AppCompatActivity {
     private ProgressBar progressBar;
     private FirebaseDatabase mDatabase;
     private DatabaseReference mRef;
-    private String name, description, street, city, county, postcode, contactNo;
+    private String name;
+    private String description;
+    private String street;
+    private String city;
+    private String county;
+    private String postcode;
+    private String contactNo;
+    private String foodVenueType;
+    private Integer imageResourceReference;
     private int rating;
     private final int REQUEST = 1;
     private Uri url;
@@ -82,14 +90,14 @@ public class AddStreetFoodActivity extends AppCompatActivity {
                     progressBar.setVisibility(View.VISIBLE);
 
                     String uid = mRef.push().getKey();
-                    FoodVenue foodVenue = new FoodVenue(uid, name, "STREET_FOOD", description, street, city, county, postcode, contactNo, rating);
+                    FoodVenue foodVenue = new FoodVenue(uid, rating, name, description, street, city, county, postcode, contactNo, foodVenueType, imageResourceReference);
                     mRef.child(uid).setValue(foodVenue)
                             .addOnCompleteListener(new OnCompleteListener<Void>() {
                                 @Override
                                 public void onComplete(@NonNull Task<Void> task) {
                                     if(task.isSuccessful()){
                                         progressBar.setVisibility(View.GONE);
-                                        startActivity(new Intent(AddStreetFoodActivity.this, RestaurantsListActivity.class));
+                                        startActivity(new Intent(AddFoodVenueActivity.this, RestaurantsListActivity.class));
                                     }
                                 }
                             })
@@ -97,12 +105,9 @@ public class AddStreetFoodActivity extends AppCompatActivity {
                                 @Override
                                 public void onFailure(@NonNull Exception e) {
                                     progressBar.setVisibility(View.GONE);
-                                    Toast.makeText(AddStreetFoodActivity.this, "Oops, something went wrong. Please try again", Toast.LENGTH_LONG).show();
+                                    Toast.makeText(AddFoodVenueActivity.this, "Oops, something went wrong. Please try again", Toast.LENGTH_LONG).show();
                                 }
                             });
-
-
-//                    Toast.makeText(AddStreetFoodActivity.this, uid, Toast.LENGTH_LONG).show();
 
                 }
             }
@@ -135,6 +140,8 @@ public class AddStreetFoodActivity extends AppCompatActivity {
         postcode = postcodeInput.getText().toString().trim();
         contactNo = contactNoInput.getText().toString().trim();
         rating = Integer.parseInt(ratingInput.getSelectedItem().toString());
+        String foodVenueType = "R";
+        String imageResourceReference = "Un link la imagine";
 
         if(name.length() < 3){
             nameInput.setError("Name is a required field and should have at least 3 characters");

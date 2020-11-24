@@ -9,9 +9,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.FFBFApp">
-        <activity android:name=".AssignCriticActivity"></activity>
+        <activity android:name=".FoodVenueDetailActivity"></activity>
+        <activity android:name=".AssignCriticActivity" />
         <activity android:name=".AdminPanelActivity" />
-        <activity android:name=".AddStreetFoodActivity" />
+        <activity android:name=".AddFoodVenueActivity" />
         <activity android:name=".RestaurantsListActivity" />
         <activity android:name=".ChangePassActivity" />
         <activity android:name=".ForgotActivity" />

@@ -3,6 +3,7 @@ package com.example.ffbfapp;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -63,14 +64,13 @@ public class AdminPanelActivity extends AppCompatActivity implements View.OnClic
                 critics.clear();
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()){
 //                    FoodVenue restaurant = snapshot.getValue(FoodVenue.class);
-                    String criticType = snapshot.child("userType").getValue(String.class);
+                    boolean isCritic = snapshot.child("critic").getValue(Boolean.class);
                     String criticName = snapshot.child("name").getValue(String.class);
                     String criticLastName = snapshot.child("lastName").getValue(String.class);
                     criticName = criticName + " " + criticLastName;
-                    if(criticType.equals("CRITIC")){
-//                        critics.add(criticName);
+                    if(isCritic){
+                        critics.add(criticName);
                     }
-                    critics.add(criticName);
                 }
                 criticsAdapter.notifyDataSetChanged();
             }
@@ -88,6 +88,7 @@ public class AdminPanelActivity extends AppCompatActivity implements View.OnClic
         switch(v.getId()){
             case R.id.btnAP_assignNewCritic:
                 //TODO:
+                startActivity(new Intent(AdminPanelActivity.this, AssignCriticActivity.class));
                 break;
             case R.id.btnAP_addRestaurant:
                 //TODO:

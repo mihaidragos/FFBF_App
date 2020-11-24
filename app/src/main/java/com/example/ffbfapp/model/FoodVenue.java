@@ -1,7 +1,16 @@
 package com.example.ffbfapp.model;
 
 public class FoodVenue {
-    private String uid, name, description, street, city, county, postcode, contactNo, foodVenueType;
+    private String uid;
+    private String name;
+    private String description;
+    private String street;
+    private String city;
+    private String county;
+    private String postcode;
+    private String contactNo;
+    private String foodVenueType;
+    private Integer imageResourceReference;
     private int rating;
 
     // TODO: Add reviews list
@@ -9,9 +18,9 @@ public class FoodVenue {
     public FoodVenue() {
     }
 
-
-    public FoodVenue(String uid, String name, String foodVenueType, String description, String street, String city, String county, String postcode, String contactNo, int rating) {
+    public FoodVenue(String uid, int rating, String name, String description, String street, String city, String county, String postcode, String contactNo, String foodVenueType, Integer imageResourceReference) {
         this.uid = uid;
+        this.rating = rating;
         this.name = name;
         this.description = description;
         this.street = street;
@@ -19,13 +28,25 @@ public class FoodVenue {
         this.county = county;
         this.postcode = postcode;
         this.contactNo = contactNo;
-        this.rating = rating;
         this.foodVenueType = foodVenueType;
+        this.imageResourceReference = imageResourceReference;
     }
 
-    public String getUid() { return uid; }
+    public String getUid() {
+        return uid;
+    }
 
-    public void setUid(String uid) { this.uid = uid; }
+    public void setUid(String uid) {
+        this.uid = uid;
+    }
+
+//    public int getUid() {
+//        return uid;
+//    }
+//
+//    public void setUid(int uid) {
+//        this.uid = uid;
+//    }
 
     public String getName() {
         return name;
@@ -98,4 +119,13 @@ public class FoodVenue {
     public void setFoodVenueType(String foodVenueType) {
         this.foodVenueType = foodVenueType;
     }
+
+    public Integer getImageResourceReference() {
+        return imageResourceReference;
+    }
+
+    public void setImageResourceReference(Integer imageResourceReference) {
+        this.imageResourceReference = imageResourceReference;
+    }
+
 }

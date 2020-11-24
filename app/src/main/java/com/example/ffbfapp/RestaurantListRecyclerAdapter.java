@@ -11,16 +11,20 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.ffbfapp.model.FoodVenue;
+import com.google.firebase.database.DatabaseReference;
+
 import java.util.ArrayList;
 import java.util.List;
 
-public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.RecyclerViewHolder> implements Filterable {
-    //declare the list of `SingleItem` activities/elements
-    private ArrayList<SingleItem> mRestaurantsList;
-    // We created this second `ArrayList` called `mRestaurantsListFull` in order to modify it by removing and adding `SingleItem` elements depending on search query/text
-    private ArrayList<SingleItem> mRestaurantsListFull;
-
+public class RestaurantListRecyclerAdapter extends RecyclerView.Adapter<RestaurantListRecyclerAdapter.RecyclerViewHolder> implements Filterable {
+    private DatabaseReference mRef;
+    //declare the list of `FoodVenue` activities/elements
+    private ArrayList<FoodVenue> mRestaurantsList;
+    // We created this second `ArrayList` called `mRestaurantsListFull` in order to modify it by removing and adding `FoodVenue` elements depending on search query/text
+    private ArrayList<FoodVenue> mRestaurantsListFull;
     private OnItemClickListener mListener;
+
 
     @Override
     public Filter getFilter() {
@@ -28,11 +32,11 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Recycl
     }
 
 
-
     public interface OnItemClickListener {
         void onItemClick(int position);
         void onDeleteClick(int position);
     }
+
 
     public void setOnItemClickListener(OnItemClickListener listener) {
         mListener = listener;
@@ -48,8 +52,8 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Recycl
         public RecyclerViewHolder(@NonNull View singleItem, OnItemClickListener listener) {
             super(singleItem);
             mImageView      = singleItem.findViewById(R.id.imageView);
-            mTitleText      = singleItem.findViewById(R.id.card_title_text);
-            mContentText    = singleItem.findViewById(R.id.card_content_text);
+            mTitleText      = singleItem.findViewById(R.id.user_card_name_text);
+            mContentText    = singleItem.findViewById(R.id.user_card_email_text);
             mDelIcon        = singleItem.findViewById(R.id.delete_icon);
 
             singleItem.setOnClickListener(new View.OnClickListener() {
@@ -78,8 +82,9 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Recycl
         }
     }
 
+
     // CONSTRUCTOR
-    public RecyclerAdapter(ArrayList<SingleItem> restaurantsList) {
+    public RestaurantListRecyclerAdapter(ArrayList<FoodVenue> restaurantsList) {
         mRestaurantsList = restaurantsList;
         /*
          Made a copy of the `mRestaurantsList`
@@ -90,6 +95,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Recycl
         mRestaurantsListFull = new ArrayList<>(restaurantsList);
     }
 
+
     @NonNull
     @Override
     public RecyclerViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -97,14 +103,22 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Recycl
         return new RecyclerViewHolder(view, mListener);
     }
 
+
     @Override
     public void onBindViewHolder(@NonNull RecyclerViewHolder holder, int position) {
-        SingleItem currentItem = mRestaurantsList.get(position);
+        FoodVenue currFoodVenue = mRestaurantsList.get(position);
+        SingleItem currentItem = new SingleItem(
+                currFoodVenue.getImageResourceReference(),
+                currFoodVenue.getName(),
+                currFoodVenue.getDescription(),
+                currFoodVenue.getUid()
+        );
 
-        holder.mImageView.setImageResource(currentItem.getImageResource());
-        holder.mTitleText.setText(currentItem.getLocationNameText());
-        holder.mContentText.setText(currentItem.getDescriptionText());
+//        holder.mImageView.setImageResource(currentItem.getImageResource());
+        holder.mTitleText.setText(currentItem.getName());
+        holder.mContentText.setText(currentItem.getDescription());
     }
+
 
     // this returns the size of our sample list to the Adapter
     @Override
@@ -112,18 +126,19 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Recycl
         return mRestaurantsList.size();
     }
 
+
     private Filter mRestaurantsFilter = new Filter() {
         @Override
         protected FilterResults performFiltering(CharSequence constraint) {
-            List<SingleItem> filteredList = new ArrayList<>();
+            List<FoodVenue> filteredList = new ArrayList<>();
 
             if (constraint == null || constraint.length() == 0) {
                 filteredList.addAll(mRestaurantsListFull);
             } else {
                 String filterPattern = constraint.toString().toLowerCase().trim();
 
-                for (SingleItem item : mRestaurantsListFull){
-                    if (item.getLocationNameText().toLowerCase().contains(filterPattern)){
+                for (FoodVenue item : mRestaurantsListFull){
+                    if (item.getName().toLowerCase().contains(filterPattern)){
                         filteredList.add(item);
                     }
                 }

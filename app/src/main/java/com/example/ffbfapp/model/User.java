@@ -1,17 +1,33 @@
 package com.example.ffbfapp.model;
 
 public class User {
-    public  String name, lastName, email, userType;
+    public  String name, lastName, email;
+    boolean admin, critic;
 
     public User(){
 
     }
 
-    public User(String name, String lastName, String email){
-        this.name   = name;
-        this.lastName   = lastName;
-        this.email  = email;
-        this.userType  = "USER"; // "ADMIN" / "CRITIC"
+
+
+    public User(String name, String lastName, String email, boolean admin, boolean critic) {
+        this.name = name;
+        this.lastName = lastName;
+        this.email = email;
+        this.admin = admin;
+        this.critic = critic;
+    }
+
+    public String getFullName() {
+        return name + " " + lastName;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getLastName() {
@@ -22,26 +38,6 @@ public class User {
         this.lastName = lastName;
     }
 
-    public void setUserType(String userType) {
-        this.userType = userType;
-    }
-
-    public User(String name, String lastName, String email, String userType){
-        this.name   = name;
-        this.lastName   = lastName;
-        this.email  = email;
-        this.userType  = userType;
-    }
-
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public String getEmail() {
         return email;
     }
@@ -50,4 +46,19 @@ public class User {
         this.email = email;
     }
 
+    public boolean isAdmin() {
+        return admin;
+    }
+
+    public void setAdmin(boolean admin) {
+        this.admin = admin;
+    }
+
+    public boolean isCritic() {
+        return critic;
+    }
+
+    public void setCritic(boolean critic) {
+        this.critic = critic;
+    }
 }

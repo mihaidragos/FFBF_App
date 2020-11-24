@@ -43,6 +43,7 @@
     <string name="admin_panel_search_user">Search Users</string>
     <string name="admin_panel_users_list">Users List</string>
     <string name="admin_panel_assign_new_food_critic">Assign New Food Critic</string>
+    <string name="admin_panel_manage_food_critics">Manage Food Critics</string>
 
 
     <string-array name="ratingValues">

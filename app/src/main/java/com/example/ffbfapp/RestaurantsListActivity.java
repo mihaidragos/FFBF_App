@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
@@ -17,6 +18,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.ffbfapp.model.FoodVenue;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -34,15 +36,16 @@ public class RestaurantsListActivity extends AppCompatActivity implements View.O
     private Button insertBtn, removeBtn, addStreetFoodBtn;
     private EditText etInsert, etRemove;
     // create an ArrayList variable that can be accessed outside of the onCreate method
-    ArrayList<SingleItem> restaurantsList;
+    ArrayList<FoodVenue> restaurantsList;
     // this will contain recreated RecyclerView
     private RecyclerView mRecyclerView;
     // the adapter is the bridge between our data and our RecyclerView (it basically feeds data into the RecyclerView only as many as needed to be displayed to the user)
-    private RecyclerAdapter mAdapter;
+    private RestaurantListRecyclerAdapter mAdapter;
     // the LayoutManager will be responsible with aligning the items in the list
     // We will use a LinearLayout
     private RecyclerView.LayoutManager mLayoutManager;
 
+    private ArrayList<String> listaNume = new ArrayList<>();
     FirebaseUser user;
 
 
@@ -62,17 +65,44 @@ public class RestaurantsListActivity extends AppCompatActivity implements View.O
     public void getRestaurantsList(){
         restaurantsList = new ArrayList<>();
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("Restaurants");
-        reference.addValueEventListener(new ValueEventListener() {
+        reference.orderByChild("name".toString()).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 restaurantsList.clear();
+
                 for(DataSnapshot snapshot : dataSnapshot.getChildren()){
-                    String itemTitle = snapshot.child("name").getValue(String.class);
-                    String itemDescription = snapshot.child("description").getValue(String.class);
-                    String itemUid = snapshot.child("uid").getValue(String.class);
-                    SingleItem restaurant = new SingleItem(R.drawable.common_google_signin_btn_icon_dark, itemTitle,itemDescription,itemUid);
-                    restaurantsList.add(restaurant);
+                    String uid = snapshot.child("uid").getValue(String.class);
+                    String name = snapshot.child("name").getValue(String.class);
+                    String description = snapshot.child("description").getValue(String.class);
+                    String street = snapshot.child("street").getValue(String.class);
+                    String city = snapshot.child("city").getValue(String.class);
+                    String county = snapshot.child("county").getValue(String.class);
+                    String postcode = snapshot.child("postcode").getValue(String.class);
+                    String contactNo = snapshot.child("contactNo").getValue(String.class);
+                    String foodVenueType = snapshot.child("foodVenueType").getValue(String.class);
+                    //TODO:
+                    int imageResourceReference = snapshot.child("imageResourceReference").getValue(Integer.class);
+                    int rating = snapshot.child("rating").getValue(Integer.class);
+
+
+                    FoodVenue foodVenue = new FoodVenue(
+                        uid,
+                        rating,
+                        name,
+                        description,
+                        street,
+                        city,
+                        county,
+                        postcode,
+                        contactNo,
+                        foodVenueType,
+                        imageResourceReference
+                    );
+                    listaNume.add(name);
+                    restaurantsList.add(foodVenue);
                 }
+//                Collections.sort(restaurantsList);
+                System.out.println(restaurantsList.toString());
                 mAdapter.notifyDataSetChanged();
             }
 
@@ -88,16 +118,16 @@ public class RestaurantsListActivity extends AppCompatActivity implements View.O
         mRecyclerView = findViewById(R.id.recyclerView);
         mRecyclerView.setHasFixedSize(true);
         mLayoutManager = new LinearLayoutManager(this);
-        mAdapter = new RecyclerAdapter(restaurantsList);
+        mAdapter = new RestaurantListRecyclerAdapter(restaurantsList);
 
         mRecyclerView.setLayoutManager(mLayoutManager);
         mRecyclerView.setAdapter(mAdapter);
 
-        mAdapter.setOnItemClickListener(new RecyclerAdapter.OnItemClickListener() {
+        mAdapter.setOnItemClickListener(new RestaurantListRecyclerAdapter.OnItemClickListener() {
 
             @Override
             public void onItemClick(int position) {
-                changeItemText(position, "CLICKED");
+                openItemDetailActivity(position, "CLICKED");
             }
 
             @Override
@@ -135,9 +165,12 @@ public class RestaurantsListActivity extends AppCompatActivity implements View.O
         mAdapter.notifyItemRemoved(position);
     }
 
-    public void changeItemText(int position, String text){
-        restaurantsList.get(position).changeTitleText(text);
-        mAdapter.notifyItemChanged(position);
+    public void openItemDetailActivity(int position, String text){
+        String uid = restaurantsList.get(position).getUid().toString();
+
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("Restaurants").child(uid);
+        new FoodVenue();
+        startActivity(new Intent(RestaurantsListActivity.this, FoodVenueDetailActivity.class));
     }
 
 
@@ -184,7 +217,7 @@ public class RestaurantsListActivity extends AppCompatActivity implements View.O
                 removeItem(position);
                 break;
             case R.id.btn_add_street_food:
-                startActivity(new Intent(RestaurantsListActivity.this, AddStreetFoodActivity.class));
+                startActivity(new Intent(RestaurantsListActivity.this, AddFoodVenueActivity.class));
                 break;
 
 

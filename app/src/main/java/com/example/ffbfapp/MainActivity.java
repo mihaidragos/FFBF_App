@@ -48,12 +48,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         myAccountBtn    = findViewById(R.id.myAccountBtn);
         listViewBtn     = findViewById(R.id.listViewBtn);
 
-//=================================================================
-//=================================================================
-//=================================================================
-//=================================================================
-        startActivity(new Intent(MainActivity.this, AdminPanelActivity.class));
-
 
         // create click listener for each button in order for _this_ object (the MainActivity class) to be passed to the onClick method below
         button.setOnClickListener(this);
