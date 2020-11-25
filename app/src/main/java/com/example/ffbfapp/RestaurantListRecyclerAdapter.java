@@ -159,7 +159,6 @@ public class RestaurantListRecyclerAdapter extends RecyclerView.Adapter<Restaura
             mRestaurantsList.addAll((List) results.values);
             // we send notification that the layout needs to be updated
             notifyDataSetChanged();
-
         }
     };
 }

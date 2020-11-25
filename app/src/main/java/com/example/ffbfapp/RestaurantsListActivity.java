@@ -146,14 +146,14 @@ public class RestaurantsListActivity extends AppCompatActivity implements View.O
         etRemove    = findViewById(R.id.et_remove);
 
 
-        // link the views with the OnClick interface
+        // link the views with the OnClick interface by passing the listener object on click method
         insertBtn.setOnClickListener(this);
         removeBtn.setOnClickListener(this);
         addStreetFoodBtn.setOnClickListener(this);
     }
 
     public void insertItem(int position){
-//        restaurantsList.add(position, new SingleItem(R.drawable.ic_launcher_background, "New item at position " + position, "Thanks for replying, my problem is that i can't add the Fragment to the Activity, the fragmentA contains a textview"));
+        // restaurantsList.add(position, new SingleItem(R.drawable.ic_launcher_background, "New item at position " + position, "Thanks for replying, my problem is that i can't add the Fragment to the Activity, the fragmentA contains a textview"));
         // Notify the adapter that changes have been made
         // mAdapter.notifyDataSetChanged(); // this will instantly refresh the list without the chance to add animations
         mAdapter.notifyItemInserted(position); // this will allow for animations and transitions
@@ -170,7 +170,7 @@ public class RestaurantsListActivity extends AppCompatActivity implements View.O
 
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("Restaurants").child(uid);
         new FoodVenue();
-        startActivity(new Intent(RestaurantsListActivity.this, FoodVenueDetailActivity.class));
+        startActivity(new Intent(RestaurantsListActivity.this, RestaurantDetailActivity.class));
     }
 
 
@@ -201,7 +201,7 @@ public class RestaurantsListActivity extends AppCompatActivity implements View.O
 
     /* A future version of the Android Gradle Plugin will generate R classes with non-constant IDs in order to improve
     the performance of incremental compilation.
-    So I used the @SuppressLint("NonConstantResourceId") annotation */
+    So I used the @SuppressLint("NonConstantResourceId") annotation to ignore the linter warning */
     @SuppressLint(value = "NonConstantResourceId")
     @Override
     public void onClick(View v) {

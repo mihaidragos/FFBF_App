@@ -1,6 +1,8 @@
 <resources>
     <string name="app_name">FFBF App</string>
     <string name="log_in">Log In</string>
+    <string name="date">Date</string>
+    <string name="time">Time</string>
     <string name="register">Register</string>
     <string name="username_label">Username/Email</string>
     <string name="password_label">Password</string>
@@ -44,6 +46,15 @@
     <string name="admin_panel_users_list">Users List</string>
     <string name="admin_panel_assign_new_food_critic">Assign New Food Critic</string>
     <string name="admin_panel_manage_food_critics">Manage Food Critics</string>
+    <string name="restaurant_detail_reviews_number_text_singular">Review</string>
+    <string name="restaurant_detail_reviews_number_text_plural">Reviews</string>
+    <string name="restaurant_detail_price_tag_label_text">Price Tag</string>
+    <string name="restaurant_detail_make_a_reservation">Make a Reservation</string>
+    <string name="restaurant_detail_party_size">Party Size</string>
+    <string name="restaurant_detail_select_a_time">Select a time:</string>
+    <string name="restaurant_detail_select_time">Select time</string>
+    <string name="restaurant_detail_select_date">Select date</string>
+
 
 
     <string-array name="ratingValues">
@@ -54,6 +65,39 @@
         <item>1</item>
         <item>0</item>
     </string-array>
+
+    <string-array name="reservationPartySize">
+        <item>2 persons</item>
+        <item>3 persons</item>
+        <item>4 persons</item>
+        <item>5 persons</item>
+        <item>6 persons</item>
+        <item>7 persons</item>
+        <item>8 persons</item>
+        <item>9 persons</item>
+        <item>10 persons</item>
+        <item>11 persons</item>
+        <item>12 persons</item>
+        <item>13 persons</item>
+        <item>14 persons</item>
+        <item>15 persons</item>
+        <item>16 persons</item>
+        <item>17 persons</item>
+        <item>18 persons</item>
+        <item>19 persons</item>
+        <item>20 persons</item>
+        <item>21 persons</item>
+        <item>22 persons</item>
+        <item>23 persons</item>
+        <item>24 persons</item>
+        <item>25 persons</item>
+        <item>26 persons</item>
+        <item>27 persons</item>
+        <item>28 persons</item>
+        <item>29 persons</item>
+        <item>30 persons</item>
+    </string-array>
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
