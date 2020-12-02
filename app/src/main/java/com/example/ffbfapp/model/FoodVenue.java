@@ -1,35 +1,54 @@
 package com.example.ffbfapp.model;
 
+
+import java.util.HashMap;
+
 public class FoodVenue {
     private String uid;
+    private String imageResourceReference;
+    private double rating;
     private String name;
     private String description;
-    private String street;
-    private String city;
-    private String county;
-    private String postcode;
-    private String contactNo;
-    private String foodVenueType;
-    private Integer imageResourceReference;
-    private int rating;
+    private String reviewsListReference;
+    private String foodMenuReference;
+    private String reservationsReference;
+    private Address address;
+    private HashMap<String,String> addressHashmap;
+    private FoodVenueType foodVenueType;
+    private Cuisine cuisine;
+    private PriceTag priceTagValue;
 
-    // TODO: Add reviews list
-    //  foodVenueType [Restaurant || Street Food]
     public FoodVenue() {
     }
 
-    public FoodVenue(String uid, int rating, String name, String description, String street, String city, String county, String postcode, String contactNo, String foodVenueType, Integer imageResourceReference) {
+    public FoodVenue(String uid, String imageResourceReference, double rating, String name, String description, String reviewsListReference, String foodMenuReference, String reservationsReference, Address address, FoodVenueType foodVenueType, Cuisine cuisine, PriceTag priceTagValue) {
         this.uid = uid;
+        this.imageResourceReference = imageResourceReference;
         this.rating = rating;
         this.name = name;
         this.description = description;
-        this.street = street;
-        this.city = city;
-        this.county = county;
-        this.postcode = postcode;
-        this.contactNo = contactNo;
+        this.reviewsListReference = reviewsListReference;
+        this.foodMenuReference = foodMenuReference;
+        this.reservationsReference = reservationsReference;
+        this.address = address;
         this.foodVenueType = foodVenueType;
+        this.cuisine = cuisine;
+        this.priceTagValue = priceTagValue;
+    }
+
+    public FoodVenue(String uid, String imageResourceReference, double rating, String name, String description, String reviewsListReference, String foodMenuReference, String reservationsReference, HashMap<String,String> addressHashmap, FoodVenueType foodVenueType, Cuisine cuisine, PriceTag priceTagValue) {
+        this.uid = uid;
         this.imageResourceReference = imageResourceReference;
+        this.rating = rating;
+        this.name = name;
+        this.description = description;
+        this.reviewsListReference = reviewsListReference;
+        this.foodMenuReference = foodMenuReference;
+        this.reservationsReference = reservationsReference;
+        this.addressHashmap = addressHashmap;
+        this.foodVenueType = foodVenueType;
+        this.cuisine = cuisine;
+        this.priceTagValue = priceTagValue;
     }
 
     public String getUid() {
@@ -40,13 +59,21 @@ public class FoodVenue {
         this.uid = uid;
     }
 
-//    public int getUid() {
-//        return uid;
-//    }
-//
-//    public void setUid(int uid) {
-//        this.uid = uid;
-//    }
+    public String getImageResourceReference() {
+        return imageResourceReference;
+    }
+
+    public void setImageResourceReference(String imageResourceReference) {
+        this.imageResourceReference = imageResourceReference;
+    }
+
+    public double getRating() {
+        return rating;
+    }
+
+    public void setRating(double rating) {
+        this.rating = rating;
+    }
 
     public String getName() {
         return name;
@@ -64,68 +91,70 @@ public class FoodVenue {
         this.description = description;
     }
 
-    public String getStreet() {
-        return street;
+    public String getReviewsListReference() {
+        return reviewsListReference;
     }
 
-    public void setStreet(String street) {
-        this.street = street;
+    public void setReviewsListReference(String reviewsListReference) {
+        this.reviewsListReference = reviewsListReference;
     }
 
-    public String getCity() {
-        return city;
+    public String getFoodMenuReference() {
+        return foodMenuReference;
     }
 
-    public void setCity(String city) {
-        this.city = city;
+    public void setFoodMenuReference(String foodMenuReference) {
+        this.foodMenuReference = foodMenuReference;
     }
 
-    public String getCounty() {
-        return county;
+    public String getReservationsReference() {
+        return reservationsReference;
     }
 
-    public void setCounty(String county) {
-        this.county = county;
+    public void setReservationsReference(String reservationsReference) {
+        this.reservationsReference = reservationsReference;
     }
 
-    public String getPostcode() {
-        return postcode;
+    public Address getAddress() {
+        return address;
     }
 
-    public void setPostcode(String postcode) {
-        this.postcode = postcode;
+    public void setAddress(Address address) {
+        this.address = address;
     }
 
-    public String getContactNo() {
-        return contactNo;
-    }
-
-    public void setContactNo(String contactNo) {
-        this.contactNo = contactNo;
-    }
-
-    public int getRating() {
-        return rating;
-    }
-
-    public void setRating(int rating) {
-        this.rating = rating;
-    }
-
-    public String getFoodVenueType() {
+    public FoodVenueType getFoodVenueType() {
         return foodVenueType;
     }
 
-    public void setFoodVenueType(String foodVenueType) {
+    public void setFoodVenueType(FoodVenueType foodVenueType) {
         this.foodVenueType = foodVenueType;
     }
 
-    public Integer getImageResourceReference() {
-        return imageResourceReference;
+    public Cuisine getCuisine() {
+        return cuisine;
     }
 
-    public void setImageResourceReference(Integer imageResourceReference) {
-        this.imageResourceReference = imageResourceReference;
+    public void setCuisine(Cuisine cuisine) {
+        this.cuisine = cuisine;
     }
 
+    public PriceTag getPriceTagValue() {
+        return priceTagValue;
+    }
+
+    public void setPriceTagValue(PriceTag priceTagValue) {
+        this.priceTagValue = priceTagValue;
+    }
+
+    public HashMap<String, String> getAddressHashmap() {
+        return addressHashmap;
+    }
+
+    public void setAddressHashmap(HashMap<String, String> addressHashmap) {
+        this.addressHashmap = addressHashmap;
+    }
 }
+
+
+

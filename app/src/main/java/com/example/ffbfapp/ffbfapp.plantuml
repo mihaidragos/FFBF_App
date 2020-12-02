@@ -1,0 +1,403 @@
+@startuml
+
+title __FFBFAPP's Class Diagram__\n
+
+  namespace com.example.ffbfapp {
+    class com.example.ffbfapp.AddFoodVenueActivity {
+        ~ rand : Random
+        ~ upperbound : int
+        - REQUEST : int
+        - address : HashMap<String, String>
+        - city : String
+        - cityInput : EditText
+        - contactNo : String
+        - contactNoInput : EditText
+        - county : String
+        - countyInput : EditText
+        - description : String
+        - descriptionInput : EditText
+        - emailAddress : String
+        - emailInput : EditText
+        - extras : Bundle
+        - foodMenuReference : String
+        - imageResourceReference : String
+        - mAddressRef : DatabaseReference
+        - mRef : DatabaseReference
+        - mStorageRef : StorageReference
+        - name : String
+        - nameInput : EditText
+        - pageTitle : TextView
+        - passedFoodVenueType : String
+        - postcode : String
+        - postcodeInput : EditText
+        - priceTagInputSpinner : Spinner
+        - progressBar : ProgressBar
+        - rating : double
+        - ratingInputSpinner : Spinner
+        - reservationsReference : String
+        - reviewsListReference : String
+        - street : String
+        - streetInput : EditText
+        - submitButton : Button
+        - uid : EditText
+        - uploadImage : ImageButton
+        - url : Uri
+        - venueType : EditText
+        # onActivityResult()
+        # onCreate()
+        - extractAddress()
+        - getExt()
+        - inputsValid()
+        - setupLayout()
+    }
+  }
+  
+
+  namespace com.example.ffbfapp {
+    class com.example.ffbfapp.AdminPanelActivity {
+        ~ mRef : DatabaseReference
+        - addRestaurantBtn : Button
+        - assignCriticRoleBtn : Button
+        - criticsListView : ListView
+        + onClick()
+        # onCreate()
+    }
+  }
+  
+
+  namespace com.example.ffbfapp {
+    class com.example.ffbfapp.AssignCriticActivity {
+        - mLayoutManager : LinearLayoutManager
+        - mRef : DatabaseReference
+        - recyclerView : RecyclerView
+        - searchText : String
+        - searchTextBox : EditText
+        - searchUsersButton : Button
+        + onClick()
+        # onCreate()
+    }
+  }
+  
+
+  namespace com.example.ffbfapp {
+    class com.example.ffbfapp.ChangePassActivity {
+        - changePass : Button
+        - changePassPB : ProgressBar
+        - confirmNewPass : String
+        - confirmNewPassInput : EditText
+        - newPass : String
+        - newPassInput : EditText
+        - user : FirebaseUser
+        # onCreate()
+    }
+  }
+  
+
+  namespace com.example.ffbfapp {
+    class com.example.ffbfapp.FoodVenueDetailActivity {
+        # onCreate()
+    }
+  }
+  
+
+  namespace com.example.ffbfapp {
+    class com.example.ffbfapp.ForgotActivity {
+        ~ mAuth : FirebaseAuth
+        - emailIntent : String
+        - forgotEmailInput : EditText
+        - forgotPasswordBtn : Button
+        - forgotProgressBar : ProgressBar
+        # onCreate()
+        - resetPassword()
+    }
+  }
+  
+
+  namespace com.example.ffbfapp {
+    class com.example.ffbfapp.LoginActivity {
+        - CHANGE_PASS : Boolean
+        - emailInput : EditText
+        - emailIntent : String
+        - forgotPassword : TextView
+        - loginBtn : Button
+        - mAuth : FirebaseAuth
+        - msg : String
+        - passwordInput : EditText
+        - progressBar : ProgressBar
+        - registerLink : TextView
+        + onClick()
+        # onCreate()
+        - userLogin()
+    }
+  }
+  
+
+  namespace com.example.ffbfapp {
+    class com.example.ffbfapp.MainActivity {
+        ~ mRef : DatabaseReference
+        - button : Button
+        - button2 : Button
+        - city : String
+        - contactNo : String
+        - county : String
+        - description : String
+        - listViewBtn : Button
+        - logoutBtn : Button
+        - mAuth : FirebaseAuth
+        - mAuthListener : AuthStateListener
+        - mUser : FirebaseUser
+        - myAccountBtn : Button
+        - name : String
+        - postcode : String
+        - rating : float
+        - restaurantsList : ListView
+        - review : String
+        - street : String
+        + addFoodVenue()
+        + onClick()
+        # onCreate()
+        # onStart()
+    }
+  }
+  
+
+  namespace com.example.ffbfapp {
+    class com.example.ffbfapp.RegisterActivity {
+        - banner : TextView
+        - confirmPasswordInput : EditText
+        - emailInput : EditText
+        - lastNameInput : EditText
+        - mAuth : FirebaseAuth
+        - nameInput : EditText
+        - passwordInput : EditText
+        - progressBar : ProgressBar
+        - submitBtn : Button
+        + onClick()
+        # onCreate()
+        - registerUser()
+    }
+  }
+  
+
+  namespace com.example.ffbfapp {
+    class com.example.ffbfapp.FoodVenueDetailActivity {
+        - animation : ObjectAnimator
+        - btnRD_firstQuarterTimeslot : Button
+        - btnRD_fourthQuarterTimeslot : Button
+        - btnRD_secondQuarterTimeslot : Button
+        - btnRD_thirdQuarterTimeslot : Button
+        - etRD_reservationChooseDate : TextView
+        - etRD_reservationChooseTime : TextView
+        - extras : Bundle
+        - ivRD_mainImage : ImageView
+        - newFragment : DialogFragment
+        - rbRD_ratingBar : RatingBar
+        - sRD_reservationPartySizeSpinner : Spinner
+        - trRD_buttonsRow : TableRow
+        - tvRD_chooseDateTime : TextView
+        - tvRD_descriptionText : TextView
+        - tvRD_foodSpecificText : TextView
+        - tvRD_priceTagValue : TextView
+        - tvRD_restaurantName : TextView
+        - tvRD_reviewsNumber : TextView
+        - tvRD_reviewsRatingNumber : TextView
+        + displayFoodVenueDetails()
+        + showDatePickerDialog()
+        + showTimePickerDialog()
+        # onCreate()
+        - collapseTextView()
+        - expandTextView()
+    }
+  }
+  
+
+  namespace com.example.ffbfapp {
+    class com.example.ffbfapp.FoodVenuesListRecyclerAdapter {
+        - mRef : DatabaseReference
+        - mRestaurantsFilter : Filter
+        - mRestaurantsList : ArrayList<FoodVenue>
+        - mRestaurantsListFull : ArrayList<FoodVenue>
+        + RestaurantListRecyclerAdapter()
+        + getFilter()
+        + getItemCount()
+        + onBindViewHolder()
+        + onCreateViewHolder()
+        + setOnItemClickListener()
+    }
+  }
+  
+
+  namespace com.example.ffbfapp {
+    interface com.example.ffbfapp.FoodVenuesListRecyclerAdapter.OnItemClickListener {
+        {abstract} + onDeleteClick()
+        {abstract} + onItemClick()
+    }
+  }
+  
+
+  namespace com.example.ffbfapp {
+    class com.example.ffbfapp.FoodVenuesListRecyclerAdapter.RecyclerViewHolder {
+        + mContentText : TextView
+        + mDelIcon : ImageView
+        + mImageView : ImageView
+        + mTitleText : TextView
+        + RecyclerViewHolder()
+    }
+  }
+  
+
+  namespace com.example.ffbfapp {
+    class com.example.ffbfapp.FoodVenueListActivity {
+        ~ foodVenueArrayList : ArrayList<FoodVenue>
+        ~ user : FirebaseUser
+        - addStreetFoodBtn : Button
+        - address : HashMap<String, String>
+        - etInsert : EditText
+        - etRemove : EditText
+        - insertBtn : Button
+        - listaNume : ArrayList<String>
+        - mLayoutManager : LayoutManager
+        - mRecyclerView : RecyclerView
+        - removeBtn : Button
+        + buildRecyclerView()
+        + getRestaurantsList()
+        + insertItem()
+        + onClick()
+        + onCreateOptionsMenu()
+        + openItemDetailActivity()
+        + removeItem()
+        + setButtons()
+        # onCreate()
+    }
+  }
+  
+
+  namespace com.example.ffbfapp {
+    class com.example.ffbfapp.SingleItem {
+        - description : String
+        - imageResourceUri : String
+        - name : String
+        - uid : String
+        + SingleItem()
+        + changeTitleText()
+        + getDescription()
+        + getImageResourceUri()
+        + getName()
+        + getUid()
+        + setDescription()
+        + setImageResourceUri()
+        + setName()
+        + setUid()
+    }
+  }
+  
+
+  namespace com.example.ffbfapp {
+    class com.example.ffbfapp.SingleUserItem {
+        - critic : boolean
+        - uid : String
+        - userEmail : String
+        - userName : String
+        + SingleUserItem()
+        + SingleUserItem()
+        + SingleUserItem()
+        + getUid()
+        + getUserEmail()
+        + getUserName()
+        + isCritic()
+        + setCritic()
+        + setUid()
+        + setUserEmail()
+        + setUserName()
+    }
+  }
+  
+
+  namespace com.example.ffbfapp {
+    class com.example.ffbfapp.UserProfileActivity {
+        - changePasswordBtn : Button
+        - logout : Button
+        - msg : String
+        - reference : DatabaseReference
+        - saveChanges : Button
+        - user : FirebaseUser
+        - userID : String
+        + onClick()
+        # onCreate()
+    }
+  }
+  
+
+  namespace com.example.ffbfapp {
+    class com.example.ffbfapp.UsersRecyclerAdapter {
+        {static} ~ mUsersList : ArrayList<SingleUserItem>
+        - mRef : DatabaseReference
+        - mToast : Toast
+        + UsersRecyclerAdapter()
+        + getItemCount()
+        + onBindViewHolder()
+        + onCreateViewHolder()
+        + setOnItemClickListener()
+    }
+  }
+  
+
+  namespace com.example.ffbfapp {
+    interface com.example.ffbfapp.UsersRecyclerAdapter.OnItemClickListener {
+        {abstract} + onItemClick()
+    }
+  }
+  
+
+  namespace com.example.ffbfapp {
+    class com.example.ffbfapp.UsersRecyclerAdapter.UsersRecyclerViewHolder {
+        + mCheckbox : CheckBox
+        + mEmailText : TextView
+        + mNameText : TextView
+        + UsersRecyclerViewHolder()
+    }
+  }
+  
+
+  com.example.ffbfapp.AddFoodVenueActivity -up-|> androidx.appcompat.app.AppCompatActivity
+  com.example.ffbfapp.AddFoodVenueActivity o-- com.example.ffbfapp.model.Cuisine : cuisine
+  com.example.ffbfapp.AddFoodVenueActivity o-- com.example.ffbfapp.model.FoodVenueType : foodVenueType
+  com.example.ffbfapp.AddFoodVenueActivity o-- com.example.ffbfapp.model.PriceTag : priceTagValue
+  com.example.ffbfapp.AdminPanelActivity .up.|> android.view.View.OnClickListener
+  com.example.ffbfapp.AdminPanelActivity -up-|> androidx.appcompat.app.AppCompatActivity
+  com.example.ffbfapp.AssignCriticActivity .up.|> android.view.View.OnClickListener
+  com.example.ffbfapp.AssignCriticActivity -up-|> androidx.appcompat.app.AppCompatActivity
+  com.example.ffbfapp.AssignCriticActivity o-- com.example.ffbfapp.UsersRecyclerAdapter : mAdapter
+  com.example.ffbfapp.ChangePassActivity -up-|> androidx.appcompat.app.AppCompatActivity
+  com.example.ffbfapp.FoodVenueDetailActivity -up-|> androidx.appcompat.app.AppCompatActivity
+  com.example.ffbfapp.ForgotActivity -up-|> androidx.appcompat.app.AppCompatActivity
+  com.example.ffbfapp.LoginActivity .up.|> android.view.View.OnClickListener
+  com.example.ffbfapp.LoginActivity -up-|> androidx.appcompat.app.AppCompatActivity
+  com.example.ffbfapp.MainActivity .up.|> android.view.View.OnClickListener
+  com.example.ffbfapp.MainActivity -up-|> androidx.appcompat.app.AppCompatActivity
+  com.example.ffbfapp.RegisterActivity .up.|> android.view.View.OnClickListener
+  com.example.ffbfapp.RegisterActivity -up-|> androidx.appcompat.app.AppCompatActivity
+  com.example.ffbfapp.FoodVenueDetailActivity -up-|> androidx.appcompat.app.AppCompatActivity
+  com.example.ffbfapp.FoodVenuesListRecyclerAdapter .up.|> android.widget.Filterable
+  com.example.ffbfapp.FoodVenuesListRecyclerAdapter -up-|> androidx.recyclerview.widget.RecyclerView.Adapter
+  com.example.ffbfapp.FoodVenuesListRecyclerAdapter o-- com.example.ffbfapp.FoodVenuesListRecyclerAdapter.OnItemClickListener : mListener
+  com.example.ffbfapp.FoodVenuesListRecyclerAdapter +-down- com.example.ffbfapp.FoodVenuesListRecyclerAdapter.OnItemClickListener
+  com.example.ffbfapp.FoodVenuesListRecyclerAdapter +-down- com.example.ffbfapp.FoodVenuesListRecyclerAdapter.RecyclerViewHolder
+  com.example.ffbfapp.FoodVenuesListRecyclerAdapter.RecyclerViewHolder -up-|> androidx.recyclerview.widget.RecyclerView.ViewHolder
+  com.example.ffbfapp.FoodVenueListActivity .up.|> android.view.View.OnClickListener
+  com.example.ffbfapp.FoodVenueListActivity -up-|> androidx.appcompat.app.AppCompatActivity
+  com.example.ffbfapp.FoodVenueListActivity o-- com.example.ffbfapp.FoodVenuesListRecyclerAdapter : mAdapter
+  com.example.ffbfapp.UserProfileActivity .up.|> android.view.View.OnClickListener
+  com.example.ffbfapp.UserProfileActivity -up-|> androidx.appcompat.app.AppCompatActivity
+  com.example.ffbfapp.UsersRecyclerAdapter -up-|> androidx.recyclerview.widget.RecyclerView.Adapter
+  com.example.ffbfapp.UsersRecyclerAdapter o-- com.example.ffbfapp.UsersRecyclerAdapter.OnItemClickListener : mListener
+  com.example.ffbfapp.UsersRecyclerAdapter +-down- com.example.ffbfapp.UsersRecyclerAdapter.OnItemClickListener
+  com.example.ffbfapp.UsersRecyclerAdapter +-down- com.example.ffbfapp.UsersRecyclerAdapter.UsersRecyclerViewHolder
+  com.example.ffbfapp.UsersRecyclerAdapter.UsersRecyclerViewHolder -up-|> androidx.recyclerview.widget.RecyclerView.ViewHolder
+
+
+right footer
+
+endfooter
+
+@enduml

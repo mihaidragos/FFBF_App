@@ -14,6 +14,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
@@ -51,7 +52,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         loginBtn.setOnClickListener(this);
         // register the click listener on the Forgot Password TextView
         forgotPassword.setOnClickListener(this);
-        // Initialize Firebase Auth
+        // Initialize Firebase Aut
         mAuth = FirebaseAuth.getInstance();
 
         // Check if any email address is passed from the previous Activity in order to auto-complete the email field
@@ -127,24 +128,28 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         // set the progress bar to visible if all validations are passed
         progressBar.setVisibility(View.VISIBLE);
 
-        mAuth.signInWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+        mAuth.signInWithEmailAndPassword(email,password)
+                .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if(task.isSuccessful()){
                     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
-
                     if(user.isEmailVerified()){
+                        System.out.println("Userul este verificat");
                         // redirect to password change page if `CHANGE_PASS` extra is passed from my account page
                         if(CHANGE_PASS == true){
+                            System.out.println("CHANGE_PASS == true");
                             // redirect to Change Password page if login is successful
                             startActivity(new Intent(LoginActivity.this, ChangePassActivity.class));
                         } else {
+                            System.out.println("redirectionare catre MainActivity");
                             // redirect to Homepage if login is successful
                             startActivity(new Intent(LoginActivity.this, MainActivity.class));
                         }
 
                     } else {
+                        System.out.println("Userul NU este verificat");
                         user.sendEmailVerification();
                         Toast.makeText(LoginActivity.this, "Please verify your email address first", Toast.LENGTH_LONG).show();
                         // hide the progress bar while user verifies his email and hits login button again
@@ -157,7 +162,15 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                     progressBar.setVisibility(View.GONE);
                 }
             }
-        });
+        })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        // Display failure message if login fails
+                        Toast.makeText(LoginActivity.this, e.toString(), Toast.LENGTH_LONG).show();
+                        progressBar.setVisibility(View.GONE);
+                    }
+                });
 
 
     }

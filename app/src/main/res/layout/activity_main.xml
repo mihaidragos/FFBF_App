@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:padding="9dp"
     tools:context=".MainActivity">
 
 
@@ -14,67 +15,75 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical" >
+            android:orientation="vertical">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="691dp">
 
                 <Button
-                    android:id="@+id/testingBtn"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="28dp"
-                    android:text="@string/log_in"
-                    app:layout_constraintStart_toEndOf="@+id/logoutBtn"
-                    app:layout_constraintTop_toTopOf="@+id/logoutBtn" />
-
-                <Button
-                    android:id="@+id/listViewBtn"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="124dp"
-                    android:text="List"
-                    app:layout_constraintStart_toEndOf="@+id/myAccountBtn"
-                    app:layout_constraintTop_toTopOf="@+id/myAccountBtn" />
-
-                <Button
-                    android:id="@+id/testingButton"
+                    android:id="@+id/myAccountBtn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="44dp"
+                    android:layout_marginTop="40dp"
+                    android:text="My Account"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/ivMA_streetFoodImage" />
+
+                <Button
+                    android:id="@+id/btnMA_loginBtn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="68dp"
+                    android:layout_marginTop="108dp"
+                    android:text="@string/log_in"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/ivMA_streetFoodImage" />
+
+                <Button
+                    android:id="@+id/btnMA_registerBtn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="28dp"
                     android:text="@string/register"
-                    app:layout_constraintStart_toEndOf="@+id/testingBtn"
-                    app:layout_constraintTop_toTopOf="@+id/testingBtn" />
+                    app:layout_constraintBottom_toBottomOf="@+id/btnMA_loginBtn"
+                    app:layout_constraintStart_toEndOf="@+id/btnMA_loginBtn"
+                    app:layout_constraintTop_toTopOf="@+id/btnMA_loginBtn" />
 
                 <Button
                     android:id="@+id/logoutBtn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="100dp"
+                    android:layout_marginStart="20dp"
                     android:text="Log Out"
-                    app:layout_constraintTop_toBottomOf="@+id/restaurantList"
-                    tools:layout_editor_absoluteX="32dp" />
+                    app:layout_constraintBottom_toBottomOf="@+id/myAccountBtn"
+                    app:layout_constraintStart_toEndOf="@+id/myAccountBtn"
+                    app:layout_constraintTop_toTopOf="@+id/myAccountBtn" />
 
-                <ListView
-                    android:id="@+id/restaurantList"
-                    android:layout_width="416dp"
-                    android:layout_height="268dp"
-                    android:layout_marginTop="192dp"
-                    android:padding="10dp"
+                <ImageView
+                    android:id="@+id/ivMA_restaurantsImage"
+                    android:layout_width="0dp"
+                    android:layout_height="190dp"
+                    android:layout_marginTop="68dp"
+                    android:background="@color/accent"
+                    android:backgroundTint="#4D8012"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.6"
+                    app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:srcCompat="@tools:sample/backgrounds/scenic" />
 
-                <Button
-                    android:id="@+id/myAccountBtn"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="28dp"
-                    android:text="My Account"
-                    app:layout_constraintBottom_toTopOf="@+id/logoutBtn"
-                    app:layout_constraintStart_toStartOf="@+id/logoutBtn" />
+                <ImageView
+                    android:id="@+id/ivMA_streetFoodImage"
+                    android:layout_width="0dp"
+                    android:layout_height="190dp"
+                    android:layout_marginTop="31dp"
+                    android:background="#970B0B"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/ivMA_restaurantsImage"
+                    tools:srcCompat="@tools:sample/backgrounds/scenic" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
         </LinearLayout>

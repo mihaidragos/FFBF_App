@@ -9,4 +9,13 @@
         app:actionViewClass="androidx.appcompat.widget.SearchView"
         app:showAsAction="ifRoom|collapseActionView"
         />
+
+    <item
+        android:id="@+id/add_food_venue_menu_item"
+        android:title="Add New Food Venue"
+        android:icon="@android:drawable/btn_plus"
+
+        />
+
+
 </menu>

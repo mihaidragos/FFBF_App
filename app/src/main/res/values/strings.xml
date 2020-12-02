@@ -13,6 +13,8 @@
     <string name="email">Email</string>
     <string name="address">Address</string>
     <string name="street_address">Street Address</string>
+    <string name="street_address_1">Street Address Line 1</string>
+    <string name="street_address_2">Street Address Line 2</string>
     <string name="postcode">Postcode</string>
     <string name="street">Street</string>
     <string name="city">City</string>
@@ -54,7 +56,10 @@
     <string name="restaurant_detail_select_a_time">Select a time:</string>
     <string name="restaurant_detail_select_time">Select time</string>
     <string name="restaurant_detail_select_date">Select date</string>
+    <string name="restaurant_detail_please_choose_date_and_time">Please choose date and time</string>
 
+
+    <string name="restaurant_detail_description">A casual all-day dining experience with a cali inspired eatery in London Battersea Square, Ludlow\'s is a neighbourhood restaurant and bar serving plates for sharing, light dishes and wholesome meals, best washed down with one of our cocktails or a great glass of wine.</string>
 
 
     <string-array name="ratingValues">

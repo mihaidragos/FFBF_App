@@ -17,7 +17,7 @@ import com.google.firebase.database.DatabaseReference;
 import java.util.ArrayList;
 import java.util.List;
 
-public class RestaurantListRecyclerAdapter extends RecyclerView.Adapter<RestaurantListRecyclerAdapter.RecyclerViewHolder> implements Filterable {
+public class FoodVenuesListRecyclerAdapter extends RecyclerView.Adapter<FoodVenuesListRecyclerAdapter.RecyclerViewHolder> implements Filterable {
     private DatabaseReference mRef;
     //declare the list of `FoodVenue` activities/elements
     private ArrayList<FoodVenue> mRestaurantsList;
@@ -54,7 +54,6 @@ public class RestaurantListRecyclerAdapter extends RecyclerView.Adapter<Restaura
             mImageView      = singleItem.findViewById(R.id.imageView);
             mTitleText      = singleItem.findViewById(R.id.user_card_name_text);
             mContentText    = singleItem.findViewById(R.id.user_card_email_text);
-            mDelIcon        = singleItem.findViewById(R.id.delete_icon);
 
             singleItem.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -67,24 +66,12 @@ public class RestaurantListRecyclerAdapter extends RecyclerView.Adapter<Restaura
                     }
                 }
             });
-
-            mDelIcon.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    if(listener != null){
-                        int position = getAdapterPosition();
-                        if (position != RecyclerView.NO_POSITION){
-                            listener.onDeleteClick(position);
-                        }
-                    }
-                }
-            });
         }
     }
 
 
     // CONSTRUCTOR
-    public RestaurantListRecyclerAdapter(ArrayList<FoodVenue> restaurantsList) {
+    public FoodVenuesListRecyclerAdapter(ArrayList<FoodVenue> restaurantsList) {
         mRestaurantsList = restaurantsList;
         /*
          Made a copy of the `mRestaurantsList`

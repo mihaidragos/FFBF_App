@@ -1,0 +1,232 @@
+@startuml
+
+title __FFBF_APP.APP's Class Diagram__\n
+
+  namespace com.example.ffbfapp {
+    class com.example.ffbfapp.AddFoodVenueActivity {
+    }
+  }
+  
+
+  namespace com.example.ffbfapp {
+    class com.example.ffbfapp.AdminPanelActivity {
+    }
+  }
+  
+
+  namespace com.example.ffbfapp {
+    class com.example.ffbfapp.AssignCriticActivity {
+    }
+  }
+  
+
+  namespace com.example.ffbfapp {
+    class com.example.ffbfapp.BuildConfig {
+    }
+  }
+  
+
+  namespace com.example.ffbfapp {
+    class com.example.ffbfapp.ChangePassActivity {
+    }
+  }
+  
+
+  namespace com.example.ffbfapp {
+    class com.example.ffbfapp.FoodVenueDetailActivity {
+    }
+  }
+  
+
+  namespace com.example.ffbfapp {
+    class com.example.ffbfapp.ForgotActivity {
+    }
+  }
+  
+
+  namespace com.example.ffbfapp {
+    class com.example.ffbfapp.LoginActivity {
+    }
+  }
+  
+
+  namespace com.example.ffbfapp {
+    class com.example.ffbfapp.MainActivity {
+    }
+  }
+  
+
+  namespace com.example.ffbfapp {
+    class com.example.ffbfapp.RegisterActivity {
+    }
+  }
+  
+
+  namespace com.example.ffbfapp {
+    class com.example.ffbfapp.RestaurantDetailActivity {
+    }
+  }
+  
+
+  namespace com.example.ffbfapp {
+    class com.example.ffbfapp.RestaurantListRecyclerAdapter {
+    }
+  }
+  
+
+  namespace com.example.ffbfapp {
+    class com.example.ffbfapp.RestaurantsListActivity {
+    }
+  }
+  
+
+  namespace com.example.ffbfapp {
+    class com.example.ffbfapp.SingleItem {
+    }
+  }
+  
+
+  namespace com.example.ffbfapp {
+    class com.example.ffbfapp.SingleUserItem {
+    }
+  }
+  
+
+  namespace com.example.ffbfapp {
+    class com.example.ffbfapp.UserProfileActivity {
+    }
+  }
+  
+
+  namespace com.example.ffbfapp {
+    class com.example.ffbfapp.UsersRecyclerAdapter {
+    }
+  }
+  
+
+  namespace com.example.ffbfapp {
+    namespace model {
+      class com.example.ffbfapp.model.Address {
+      }
+    }
+  }
+  
+
+  namespace com.example.ffbfapp {
+    namespace model {
+      enum Cuisine {
+      }
+    }
+  }
+  
+
+  namespace com.example.ffbfapp {
+    namespace model {
+      class com.example.ffbfapp.model.DatePickerFragment {
+      }
+    }
+  }
+  
+
+  namespace com.example.ffbfapp {
+    namespace model {
+      class com.example.ffbfapp.model.FoodVenue {
+      }
+    }
+  }
+  
+
+  namespace com.example.ffbfapp {
+    namespace model {
+      enum FoodVenueType {
+      }
+    }
+  }
+  
+
+  namespace com.example.ffbfapp {
+    namespace model {
+      enum PriceTag {
+      }
+    }
+  }
+  
+
+  namespace com.example.ffbfapp {
+    namespace model {
+      enum Rating {
+      }
+    }
+  }
+  
+
+  namespace com.example.ffbfapp {
+    namespace model {
+      class com.example.ffbfapp.model.Review {
+      }
+    }
+  }
+  
+
+  namespace com.example.ffbfapp {
+    namespace model {
+      class com.example.ffbfapp.model.TimePickerFragment {
+      }
+    }
+  }
+  
+
+  namespace com.example.ffbfapp {
+    namespace model {
+      class com.example.ffbfapp.model.User {
+      }
+    }
+  }
+  
+
+  com.example.ffbfapp.AddFoodVenueActivity -up-|> androidx.appcompat.app.AppCompatActivity
+  com.example.ffbfapp.AddFoodVenueActivity o-- com.example.ffbfapp.model.Cuisine : cuisine
+  com.example.ffbfapp.AddFoodVenueActivity o-- com.example.ffbfapp.model.FoodVenueType : foodVenueType
+  com.example.ffbfapp.AddFoodVenueActivity o-- com.example.ffbfapp.model.PriceTag : priceTagValue
+  com.example.ffbfapp.AdminPanelActivity .up.|> android.view.View.OnClickListener
+  com.example.ffbfapp.AdminPanelActivity -up-|> androidx.appcompat.app.AppCompatActivity
+  com.example.ffbfapp.AssignCriticActivity .up.|> android.view.View.OnClickListener
+  com.example.ffbfapp.AssignCriticActivity -up-|> androidx.appcompat.app.AppCompatActivity
+  com.example.ffbfapp.AssignCriticActivity o-- com.example.ffbfapp.UsersRecyclerAdapter : mAdapter
+  com.example.ffbfapp.ChangePassActivity -up-|> androidx.appcompat.app.AppCompatActivity
+  com.example.ffbfapp.FoodVenueDetailActivity -up-|> androidx.appcompat.app.AppCompatActivity
+  com.example.ffbfapp.ForgotActivity -up-|> androidx.appcompat.app.AppCompatActivity
+  com.example.ffbfapp.LoginActivity .up.|> android.view.View.OnClickListener
+  com.example.ffbfapp.LoginActivity -up-|> androidx.appcompat.app.AppCompatActivity
+  com.example.ffbfapp.MainActivity .up.|> android.view.View.OnClickListener
+  com.example.ffbfapp.MainActivity -up-|> androidx.appcompat.app.AppCompatActivity
+  com.example.ffbfapp.RegisterActivity .up.|> android.view.View.OnClickListener
+  com.example.ffbfapp.RegisterActivity -up-|> androidx.appcompat.app.AppCompatActivity
+  com.example.ffbfapp.RestaurantDetailActivity -up-|> androidx.appcompat.app.AppCompatActivity
+  com.example.ffbfapp.RestaurantListRecyclerAdapter .up.|> android.widget.Filterable
+  com.example.ffbfapp.RestaurantListRecyclerAdapter -up-|> androidx.recyclerview.widget.RecyclerView.Adapter
+  com.example.ffbfapp.RestaurantListRecyclerAdapter o-- com.example.ffbfapp.RestaurantListRecyclerAdapter.OnItemClickListener : mListener
+  com.example.ffbfapp.RestaurantsListActivity .up.|> android.view.View.OnClickListener
+  com.example.ffbfapp.RestaurantsListActivity -up-|> androidx.appcompat.app.AppCompatActivity
+  com.example.ffbfapp.RestaurantsListActivity o-- com.example.ffbfapp.RestaurantListRecyclerAdapter : mAdapter
+  com.example.ffbfapp.UserProfileActivity .up.|> android.view.View.OnClickListener
+  com.example.ffbfapp.UserProfileActivity -up-|> androidx.appcompat.app.AppCompatActivity
+  com.example.ffbfapp.UsersRecyclerAdapter -up-|> androidx.recyclerview.widget.RecyclerView.Adapter
+  com.example.ffbfapp.UsersRecyclerAdapter o-- com.example.ffbfapp.UsersRecyclerAdapter.OnItemClickListener : mListener
+  com.example.ffbfapp.model.DatePickerFragment .up.|> android.app.DatePickerDialog.OnDateSetListener
+  com.example.ffbfapp.model.DatePickerFragment -up-|> androidx.fragment.app.DialogFragment
+  com.example.ffbfapp.model.FoodVenue o-- com.example.ffbfapp.model.Cuisine : cuisine
+  com.example.ffbfapp.model.FoodVenue o-- com.example.ffbfapp.model.FoodVenueType : foodVenueType
+  com.example.ffbfapp.model.FoodVenue o-- com.example.ffbfapp.model.PriceTag : priceTagValue
+  com.example.ffbfapp.model.TimePickerFragment .up.|> android.app.TimePickerDialog.OnTimeSetListener
+  com.example.ffbfapp.model.TimePickerFragment -up-|> androidx.fragment.app.DialogFragment
+
+
+right footer
+
+
+PlantUML diagram generated by SketchIt! (https://bitbucket.org/pmesmeur/sketch.it)
+For more information about this tool, please contact philippe.mesmeur@gmail.com
+endfooter
+
+@enduml
