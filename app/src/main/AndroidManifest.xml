@@ -11,6 +11,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.FFBFApp">
+        <activity android:name=".ReviewsListActivity"></activity>
+        <activity android:name=".AddReviewActivity" />
         <activity android:name=".FoodVenueDetailActivity" />
         <activity android:name=".AssignCriticActivity" />
         <activity android:name=".AdminPanelActivity" />

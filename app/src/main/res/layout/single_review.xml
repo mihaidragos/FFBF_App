@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+    <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        app:cardCornerRadius="4dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="4dp"
+        android:padding="9dp">
+
+
+        <TextView
+            android:id="@+id/tvSR_username"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="35dp"
+            android:text="Username"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tvSR_reviewTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="21dp"
+            android:layout_toEndOf="@+id/tvSR_username"
+            android:text="The food was awesome"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tvSR_reviewContent"
+            android:layout_width="241dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tvSR_reviewTitle"
+            android:layout_alignStart="@+id/tvSR_reviewTitle"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="0dp"
+            android:layout_marginTop="7dp"
+            android:layout_marginEnd="0dp"
+            android:text="Fabulous food and great service as always. The prawn and bean curd and prawn, scallop and asparagus stir fry were exceptional. Will be back post lockdown 2.0"
+            android:textSize="12sp" />
+
+        <RatingBar
+            android:id="@+id/rbSR_ratingBar"
+            style="@style/Widget.AppCompat.RatingBar.Small"
+            android:layout_width="79dp"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/tvSR_username"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="0dp"
+            android:layout_marginTop="0dp" />
+
+
+    </RelativeLayout>
+</com.google.android.material.card.MaterialCardView>

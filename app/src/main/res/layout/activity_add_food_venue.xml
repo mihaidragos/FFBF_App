@@ -54,6 +54,7 @@
                 android:textStyle="bold" />
 
             <EditText
+
                 android:id="@+id/etAFV_inputName"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
@@ -65,6 +66,7 @@
                 android:inputType="text" />
 
             <EditText
+
                 android:id="@+id/etAFV_inputDescription"
                 android:layout_width="match_parent"
                 android:layout_height="116dp"
@@ -79,6 +81,7 @@
                 android:lines="5" />
 
             <EditText
+
                 android:id="@+id/etAFV_inputStreet"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
@@ -89,6 +92,7 @@
                 android:inputType="text" />
 
             <EditText
+
                 android:id="@+id/etAFV_inputCity"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -100,6 +104,7 @@
                 android:inputType="textPersonName" />
 
             <EditText
+
                 android:id="@+id/etAFV_inputCounty"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
@@ -111,6 +116,7 @@
                 android:inputType="textPersonName" />
 
             <EditText
+
                 android:id="@+id/etAFV_inputPostcode"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
@@ -122,6 +128,7 @@
                 android:inputType="textPersonName" />
 
             <EditText
+
                 android:id="@+id/etAFV_inputPhone"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"

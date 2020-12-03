@@ -2,22 +2,24 @@ package com.example.ffbfapp;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.DialogFragment;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.animation.ObjectAnimator;
 import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.ImageView;
 import android.widget.RatingBar;
+import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.TimePicker;
-import android.widget.Toast;
 
 import com.example.ffbfapp.model.DatePickerFragment;
 import com.example.ffbfapp.model.FoodVenueType;
@@ -45,6 +47,7 @@ public class FoodVenueDetailActivity extends AppCompatActivity implements DatePi
     private Button btnRD_thirdQuarterTimeslot;
     private Button btnRD_fourthQuarterTimeslot;
     private TableRow trRD_buttonsRow;
+    private RelativeLayout reviewsArea;
 
     private DialogFragment newFragment;
     // Define variables
@@ -55,7 +58,7 @@ public class FoodVenueDetailActivity extends AppCompatActivity implements DatePi
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_restaurant_detail);
+        setContentView(R.layout.activity_food_venue_detail);
         Bundle extras = getIntent().getExtras();
 
         displayFoodVenueDetails(extras);
@@ -69,7 +72,7 @@ public class FoodVenueDetailActivity extends AppCompatActivity implements DatePi
 //        btnRD_fourthQuarterTimeslot.setVisibility(View.GONE);
     }
 
-    @SuppressLint("SetTextI18n")
+    @SuppressLint({"SetTextI18n", "WrongViewCast"})
     public void displayFoodVenueDetails(Bundle extras) {
         // Grab the extras
         String uid = extras.getString("uid");
@@ -81,7 +84,7 @@ public class FoodVenueDetailActivity extends AppCompatActivity implements DatePi
         String postcode = extras.getString("postcode");
         String contactNo = extras.getString("contactNo");
         FoodVenueType foodVenueType = (FoodVenueType) extras.get("foodVenueType");
-        int imageResourceReference = extras.getInt("imageResourceReference");
+//        int imageResourceReference = extras.getInt("imageResourceReference");
         double rating = extras.getDouble("rating");
 
         // Get the visual elements
@@ -102,6 +105,8 @@ public class FoodVenueDetailActivity extends AppCompatActivity implements DatePi
         tvRD_descriptionText = findViewById(R.id.tvRD_descriptionText);
         trRD_buttonsRow = findViewById(R.id.trRD_buttonsRow);
         tvRD_chooseDateTime = findViewById(R.id.tvRD_chooseDateTime);
+        reviewsArea = findViewById(R.id.rlFVDA_reviews);
+
 
         // Replace the template elements
         tvRD_restaurantName.setText(name);
@@ -126,7 +131,6 @@ public class FoodVenueDetailActivity extends AppCompatActivity implements DatePi
             }
         });
 
-        // TODO: Add animation for the description [Read More] button
         tvRD_descriptionText.setOnClickListener(new View.OnClickListener() {
             @SuppressLint("ObjectAnimatorBinding")
             @Override
@@ -144,10 +148,18 @@ public class FoodVenueDetailActivity extends AppCompatActivity implements DatePi
             }
         });
 
-        //TODO:
-//        tvRD_reviewsNumber.setText();
-//        tvRD_foodSpecificText.
-//        tvRD_priceTagValue
+        reviewsArea.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(FoodVenueDetailActivity.this, ReviewsListActivity.class);
+                i.putExtra("uid", uid);
+                i.putExtra("venueName", name);
+                i.putExtra("foodVenueType", foodVenueType);
+                startActivity(i);
+            }
+        });
+
+
     }
 
 

@@ -94,10 +94,11 @@ public class UserProfileActivity extends AppCompatActivity implements View.OnCli
     // define what the click listeners will do for each button
     @Override
     public void onClick(View v) {
+        Intent i;
         switch (v.getId()) {
             case R.id.changePasswordBtn:
                 String userEmail = user.getEmail();
-                Intent i = new Intent(UserProfileActivity.this, LoginActivity.class);
+                i = new Intent(UserProfileActivity.this, LoginActivity.class);
                 i.putExtra("email", userEmail);
                 i.putExtra("CHANGE_PASS", true);
                 startActivity(i);
@@ -105,6 +106,13 @@ public class UserProfileActivity extends AppCompatActivity implements View.OnCli
             case R.id.profilePageLogoutBtn:
                 FirebaseAuth.getInstance().signOut();
                 startActivity(new Intent(UserProfileActivity.this, LoginActivity.class));
+                break;
+            case R.id.adminPanelButton:
+                System.out.println("merge");
+                i = new Intent(UserProfileActivity.this, AdminPanelActivity.class);
+                startActivity(i);
+                break;
+            default:
                 break;
         }
     }

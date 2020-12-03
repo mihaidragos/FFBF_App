@@ -42,6 +42,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             startActivity(new Intent(MainActivity.this, LoginActivity.class));
         }
 
+        i = new Intent(this, AdminPanelActivity.class);
+        startActivity(i);
+
         // getting the views references from this acivity layout
         loginBtn = findViewById(R.id.btnMA_loginBtn);
         registerBtn = findViewById(R.id.btnMA_registerBtn);
@@ -60,7 +63,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         // hide  [My Account] and [Log Out] buttons if user is not logged in
         if(mUser != null){
-            System.out.println("Userul logat este " + mUser.getUid());
             loginBtn.setVisibility(View.GONE);
             registerBtn.setVisibility(View.GONE);
         } else {
@@ -71,7 +73,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mAuthListener = new FirebaseAuth.AuthStateListener() {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
-
             }
         };
 
@@ -165,6 +166,5 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         String uid = reference.push().getKey();
         foodVenue.setUid(uid);
         reference.child(uid).setValue(foodVenue);
-
     }
 }

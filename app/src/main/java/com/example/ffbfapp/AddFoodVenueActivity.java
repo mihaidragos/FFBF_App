@@ -8,9 +8,6 @@ import android.content.ContentResolver;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Looper;
-import android.util.Log;
 import android.view.View;
 import android.webkit.MimeTypeMap;
 import android.widget.ArrayAdapter;
@@ -22,20 +19,17 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.ffbfapp.data.Upload;
-import com.example.ffbfapp.model.Address;
 import com.example.ffbfapp.model.Cuisine;
 import com.example.ffbfapp.model.FoodVenue;
 import com.example.ffbfapp.model.FoodVenueType;
 import com.example.ffbfapp.model.PriceTag;
-import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.squareup.picasso.Picasso;
@@ -74,11 +68,12 @@ public class AddFoodVenueActivity extends AppCompatActivity {
     Random rand = new Random(); //instance of random class
     int upperbound = 100;
     //generate random values from 0-24
-    private final int REQUEST = rand.nextInt(upperbound);
+//    private final int REQUEST = rand.nextInt(upperbound);
+    private final int REQUEST = 1;
 
     private Uri mImageUri;
-    private Address address;
-    private HashMap<String,String> addressHashmap;
+    private HashMap<String,String> address;
+    private FoodVenue foodVenue;
 
     // Enums
     private FoodVenueType foodVenueType;
@@ -116,23 +111,10 @@ public class AddFoodVenueActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if(inputsValid()){
                     progressBar.setVisibility(View.VISIBLE);
-
-                    String uid = mDatabaseRef.push().getKey();
+                    foodVenueID = mDatabaseRef.push().getKey();
+                    uploadImageAndData();
 //                    final StorageReference filePath = mStorageRef.child(foodVenueType.getLabel()).child(uid);
-                    FoodVenue foodVenue = new FoodVenue(
-                            uid,
-                            imageResourceReference,
-                            rating,
-                            name,
-                            description,
-                            "reviewsListReference as a child of Revie",
-                            "foodMenuReference as a FirebaseStorage",
-                            "reservationsReference",
-                            addressHashmap,
-                            foodVenueType,
-                            Cuisine.MEDITERRANEAN,
-                            priceTagValue
-                    );
+
 // Tendai's version
 
 //===============================================
@@ -171,26 +153,6 @@ public class AddFoodVenueActivity extends AppCompatActivity {
 
 
 //============================================
-
-
-                    mDatabaseRef.child(uid).setValue(foodVenue)
-                            .addOnCompleteListener(new OnCompleteListener<Void>() {
-                                @Override
-                                public void onComplete(@NonNull Task<Void> task) {
-                                    if(task.isSuccessful()){
-                                        progressBar.setVisibility(View.GONE);
-                                        startActivity(new Intent(AddFoodVenueActivity.this, FoodVenueListActivity.class));
-                                    }
-                                }
-                            })
-                            .addOnFailureListener(new OnFailureListener() {
-                                @Override
-                                public void onFailure(@NonNull Exception e) {
-                                    progressBar.setVisibility(View.GONE);
-                                    Toast.makeText(AddFoodVenueActivity.this, "Oops, something went wrong. Please try again", Toast.LENGTH_LONG).show();
-                                }
-                            });
-
                 }
             }
         });
@@ -200,19 +162,20 @@ public class AddFoodVenueActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-
         if (requestCode == REQUEST && resultCode == RESULT_OK && data != null && data.getData() != null){
             mImageUri = data.getData();
-            Picasso.get().load(mImageUri).fit().into(chooseImage);
 
-
+            imageResourceReference = mImageUri.toString().trim();
+            int height = chooseImage.getHeight();
+            int width = chooseImage.getWidth();
+            Picasso.get().load(this.mImageUri).resize(width, height).into(chooseImage);
         }
     }
 
     private void openFileChooser(){
         Intent i = new Intent();
 
-        i.setType("image/*");// only show images in the File Chooser
+        i.setType("image/*"); // only show images in the File Chooser
         i.hasCategory(Intent.CATEGORY_OPENABLE);
         i.setAction(Intent.ACTION_GET_CONTENT);
         startActivityForResult(i, REQUEST);
@@ -235,8 +198,16 @@ public class AddFoodVenueActivity extends AppCompatActivity {
         emailAddress = emailInput.getText().toString().trim();
         rating = Double.parseDouble(ratingInputSpinner.getSelectedItem().toString());
         priceTagValue = (PriceTag) priceTagInputSpinner.getSelectedItem();
-//        foodVenueType = (PriceTag) foodVenueType.getSelectedItem();
-        address = new Address(street, city, county, postcode, contactNo, emailAddress);
+
+//        foodVenueType = (FoodVenueType) foodVenueType;
+
+        address = new HashMap<>();
+        address.put("street", street);
+        address.put("city", city);
+        address.put("county", county);
+        address.put("postcode", postcode);
+        address.put("contactNo", contactNo);
+        address.put("emailAddress", emailAddress);
 
         if(name.length() < 3){
             nameInput.setError("Name is a required field and should have at least 3 characters");
@@ -329,45 +300,86 @@ public class AddFoodVenueActivity extends AppCompatActivity {
         submitButton.setText(buttonText);
     }
 
-
-    private void uploadImage(){
+    private void uploadImageAndData(){
         if(mImageUri != null){
-            if (mImageUri != null)
-            {
-                mStorageRef.putFile(mImageUri).continueWithTask(new Continuation<UploadTask.TaskSnapshot, Task<Uri>>()
-                {
-                    @Override
-                    public Task<Uri> then(@NonNull Task<UploadTask.TaskSnapshot> task) throws Exception
-                    {
-                        if (!task.isSuccessful())
-                        {
-                            throw task.getException();
+            StorageReference reference = mStorageRef.child(foodVenueID + "." + getExt(mImageUri));
+            reference.putFile(mImageUri)
+                     .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                        @Override
+                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                            reference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                @Override
+                                public void onSuccess(Uri uri) {
+                                    imageResourceReference = uri.toString();
+                                    foodVenue = new FoodVenue(
+                                            foodVenueID,
+                                            imageResourceReference,
+                                            rating,
+                                            name,
+                                            description,
+                                            "reviewsListReference as a child of Reviews",
+                                            "foodMenuReference as a FirebaseStorage",
+                                            "reservationsReference",
+                                            address,
+                                            foodVenueType,
+                                            Cuisine.MEDITERRANEAN,
+                                            priceTagValue
+                                    );
+                                    uploadData(foodVenueID, foodVenue);
+                                }
+                            })
+                            .addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception e) {
+                                    Toast.makeText(AddFoodVenueActivity.this, e.getMessage(), Toast.LENGTH_LONG).show();
+                                }
+                            });
                         }
-                        return mStorageRef.getDownloadUrl();
-                    }
-                }).addOnCompleteListener(new OnCompleteListener<Uri>()
-                {
-                    @Override
-                    public void onComplete(@NonNull Task<Uri> task)
-                    {
-                        if (task.isSuccessful())
-                        {
-                            Uri downloadUri = task.getResult();
-//                            Log.e(TAG, "then: " + downloadUri.toString());
-                            System.out.println(downloadUri.toString());
-
-
-                            Upload upload = new Upload(nameInput.getText().toString().trim(),
-                                    downloadUri.toString());
-
-                            mDatabaseRef.child(foodVenueID).setValue(upload);
-                        } else
-                        {
-                            Toast.makeText(AddFoodVenueActivity.this, "upload failed: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                     })
+                     .addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            Toast.makeText(AddFoodVenueActivity.this, e.getMessage(), Toast.LENGTH_LONG).show();
                         }
-                    }
-                });
-            }
+                     });
+
+
+
+//            ======================================================
+
+//                mStorageRef.putFile(mImageUri).continueWithTask(new Continuation<UploadTask.TaskSnapshot, Task<Uri>>() {
+//                    @Override
+//                    public Task<Uri> then(@NonNull Task<UploadTask.TaskSnapshot> task) throws Exception
+//                    {
+//                        if (!task.isSuccessful())
+//                        {
+//                            throw task.getException();
+//                        }
+//                        return mStorageRef.getDownloadUrl();
+//                    }
+//                })
+//                    .addOnCompleteListener(new OnCompleteListener<Uri>(){
+//                    @Override
+//                    public void onComplete(@NonNull Task<Uri> task)
+//                    {
+//                        if (task.isSuccessful())
+//                        {
+//                            mImageUri = task.getResult();
+////                          // set the
+//                            imageResourceReference = mImageUri.toString();
+//
+//
+//                            Upload upload = new Upload(nameInput.getText().toString().trim(),
+//                                    mImageUri.toString());
+//
+//                            mDatabaseRef.child(foodVenueID).setValue(upload);
+//                        } else
+//                        {
+//                            Toast.makeText(AddFoodVenueActivity.this, "upload failed: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+//                        }
+//                    }
+//                });
+
 
 
 //            StorageReference fileReference = mStorageRef.child(System.currentTimeMillis() + "." + getExt(mImageUri));
@@ -404,5 +416,27 @@ public class AddFoodVenueActivity extends AppCompatActivity {
         } else {
             Toast.makeText(this, "No file selected", Toast.LENGTH_LONG).show();
         }
+    }
+
+    private void uploadData(String id, FoodVenue fv){
+        mDatabaseRef.child(id).setValue(fv)
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if(task.isSuccessful()){
+                            progressBar.setVisibility(View.GONE);
+                            Intent i = new Intent(AddFoodVenueActivity.this, FoodVenueListActivity.class);
+                            i.putExtra("foodVenueType", foodVenueType);
+                            startActivity(i);
+                        }
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        progressBar.setVisibility(View.GONE);
+                        Toast.makeText(AddFoodVenueActivity.this, "Oops, something went wrong. Please try again", Toast.LENGTH_LONG).show();
+                    }
+                });
     }
 }

@@ -12,8 +12,7 @@ public class FoodVenue {
     private String reviewsListReference;
     private String foodMenuReference;
     private String reservationsReference;
-    private Address address;
-    private HashMap<String,String> addressHashmap;
+    private HashMap<String,String> address;
     private FoodVenueType foodVenueType;
     private Cuisine cuisine;
     private PriceTag priceTagValue;
@@ -21,7 +20,7 @@ public class FoodVenue {
     public FoodVenue() {
     }
 
-    public FoodVenue(String uid, String imageResourceReference, double rating, String name, String description, String reviewsListReference, String foodMenuReference, String reservationsReference, Address address, FoodVenueType foodVenueType, Cuisine cuisine, PriceTag priceTagValue) {
+    public FoodVenue(String uid, String imageResourceReference, double rating, String name, String description, String reviewsListReference, String foodMenuReference, String reservationsReference, HashMap<String,String> address, FoodVenueType foodVenueType, Cuisine cuisine, PriceTag priceTagValue) {
         this.uid = uid;
         this.imageResourceReference = imageResourceReference;
         this.rating = rating;
@@ -31,21 +30,6 @@ public class FoodVenue {
         this.foodMenuReference = foodMenuReference;
         this.reservationsReference = reservationsReference;
         this.address = address;
-        this.foodVenueType = foodVenueType;
-        this.cuisine = cuisine;
-        this.priceTagValue = priceTagValue;
-    }
-
-    public FoodVenue(String uid, String imageResourceReference, double rating, String name, String description, String reviewsListReference, String foodMenuReference, String reservationsReference, HashMap<String,String> addressHashmap, FoodVenueType foodVenueType, Cuisine cuisine, PriceTag priceTagValue) {
-        this.uid = uid;
-        this.imageResourceReference = imageResourceReference;
-        this.rating = rating;
-        this.name = name;
-        this.description = description;
-        this.reviewsListReference = reviewsListReference;
-        this.foodMenuReference = foodMenuReference;
-        this.reservationsReference = reservationsReference;
-        this.addressHashmap = addressHashmap;
         this.foodVenueType = foodVenueType;
         this.cuisine = cuisine;
         this.priceTagValue = priceTagValue;
@@ -115,14 +99,6 @@ public class FoodVenue {
         this.reservationsReference = reservationsReference;
     }
 
-    public Address getAddress() {
-        return address;
-    }
-
-    public void setAddress(Address address) {
-        this.address = address;
-    }
-
     public FoodVenueType getFoodVenueType() {
         return foodVenueType;
     }
@@ -147,12 +123,12 @@ public class FoodVenue {
         this.priceTagValue = priceTagValue;
     }
 
-    public HashMap<String, String> getAddressHashmap() {
-        return addressHashmap;
+    public HashMap<String, String> getAddress() {
+        return address;
     }
 
-    public void setAddressHashmap(HashMap<String, String> addressHashmap) {
-        this.addressHashmap = addressHashmap;
+    public void setAddress(HashMap<String, String> address) {
+        this.address = address;
     }
 }
 

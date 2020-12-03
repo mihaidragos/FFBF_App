@@ -1,25 +1,29 @@
-package com.example.ffbfapp.model;
+package com.example.ffbfapp;
 
-public class Review {
-    private String owner, title, content;
+import android.widget.RatingBar;
+import android.widget.TextView;
+
+
+public class SingleReview {
+    private String username, title, content;
     private int rating;
 
-    public Review(String owner, String title, String content, int rating) {
-        this.owner = owner;
+    public SingleReview() {
+    }
+
+    public SingleReview(String username, String title, String content, int rating) {
+        this.username = username;
         this.title = title;
         this.content = content;
         this.rating = rating;
     }
 
-    public Review() {
+    public String getUsername() {
+        return username;
     }
 
-    public String getOwner() {
-        return owner;
-    }
-
-    public void setOwner(String owner) {
-        this.owner = owner;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getTitle() {

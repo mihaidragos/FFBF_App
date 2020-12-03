@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.ffbfapp.model.FoodVenue;
 import com.google.firebase.database.DatabaseReference;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,7 +32,6 @@ public class FoodVenuesListRecyclerAdapter extends RecyclerView.Adapter<FoodVenu
         return mRestaurantsFilter;
     }
 
-
     public interface OnItemClickListener {
         void onItemClick(int position);
         void onDeleteClick(int position);
@@ -41,7 +41,6 @@ public class FoodVenuesListRecyclerAdapter extends RecyclerView.Adapter<FoodVenu
     public void setOnItemClickListener(OnItemClickListener listener) {
         mListener = listener;
     }
-
 
     // creating a class in order to interact with the inner parts of a single item (list item)
     public static class RecyclerViewHolder extends RecyclerView.ViewHolder {
@@ -69,7 +68,6 @@ public class FoodVenuesListRecyclerAdapter extends RecyclerView.Adapter<FoodVenu
         }
     }
 
-
     // CONSTRUCTOR
     public FoodVenuesListRecyclerAdapter(ArrayList<FoodVenue> restaurantsList) {
         mRestaurantsList = restaurantsList;
@@ -82,7 +80,6 @@ public class FoodVenuesListRecyclerAdapter extends RecyclerView.Adapter<FoodVenu
         mRestaurantsListFull = new ArrayList<>(restaurantsList);
     }
 
-
     @NonNull
     @Override
     public RecyclerViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -90,22 +87,23 @@ public class FoodVenuesListRecyclerAdapter extends RecyclerView.Adapter<FoodVenu
         return new RecyclerViewHolder(view, mListener);
     }
 
-
     @Override
     public void onBindViewHolder(@NonNull RecyclerViewHolder holder, int position) {
         FoodVenue currFoodVenue = mRestaurantsList.get(position);
+
+        int maxLength = 120;
+        String descriptionText = currFoodVenue.getDescription().substring(0, maxLength);
         SingleItem currentItem = new SingleItem(
                 currFoodVenue.getImageResourceReference(),
                 currFoodVenue.getName(),
-                currFoodVenue.getDescription(),
+                descriptionText,
                 currFoodVenue.getUid()
         );
 
-//        holder.mImageView.setImageResource(currentItem.getImageResource());
+        Picasso.get().load(currentItem.getImageResourceUri()).into(holder.mImageView);
         holder.mTitleText.setText(currentItem.getName());
         holder.mContentText.setText(currentItem.getDescription());
     }
-
 
     // this returns the size of our sample list to the Adapter
     @Override
@@ -134,7 +132,6 @@ public class FoodVenuesListRecyclerAdapter extends RecyclerView.Adapter<FoodVenu
             FilterResults results = new FilterResults();
             results.values = filteredList;
 
-            // this value will be passed onward to `publishResults` method
             return results;
         }
 
@@ -148,4 +145,6 @@ public class FoodVenuesListRecyclerAdapter extends RecyclerView.Adapter<FoodVenu
             notifyDataSetChanged();
         }
     };
+
+
 }
